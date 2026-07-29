@@ -296,3 +296,77 @@ footer .copyright { font-size: 13px; color: #7a6d5b; margin-left: 4px; }
   .hero-top { flex-direction: column; gap: 24px; }
   .hero-ascii { display: none; }
 }
+
+/* ---------------- Case study pages ---------------- */
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.case-back:hover { color: var(--accent); }
+
+.case-hero { padding-bottom: 48px; }
+.case-meta-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.case-hero h1 { font-size: 42px; margin-top: 4px; }
+.case-hero .lead { max-width: 720px; }
+
+.case-content { padding-top: 0; }
+
+.case-body-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 44px;
+}
+.case-deliverables { position: sticky; top: 96px; }
+.case-deliverables .label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+  display: block;
+}
+.case-deliverables .tag-list { gap: 10px; }
+.case-deliverables .tag { background: var(--card-tan); }
+
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.case-gallery.single { grid-template-columns: 1fr; }
+.case-gallery.triple { grid-template-columns: repeat(3, 1fr); }
+.case-gallery img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+.case-cta {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.case-cta-next { font-size: 14px; color: var(--muted); }
+.case-cta-next a { color: var(--accent); font-weight: 600; }
+.case-cta-next a:hover { text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .case-body-grid { grid-template-columns: 1fr; }
+  .case-deliverables { position: static; }
+  .case-gallery, .case-gallery.triple { grid-template-columns: 1fr; }
+  .case-hero h1 { font-size: 30px; }
+}
