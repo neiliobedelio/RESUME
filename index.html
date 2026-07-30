@@ -10,7 +10,7 @@
 
   <nav class="nav">
     <a class="nav-logo" href="index.html">Neil Bernardo</a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
@@ -19,14 +19,17 @@
     <div class="nav-right">
       <a class="btn btn-primary" href="mailto:bernardoneil0@gmail.com">Get in touch</a>
     </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <header class="hero">
     <div class="hero-top">
       <div class="hero-copy">
-        <span class="eyebrow">CREATIVE DIRECTOR · DESIGN TECHNOLOGIST</span>
-        <h1>Fifteen years of building brand ecosystems — now built with AI at the core.</h1>
-        <p class="lead">Visionary creative leader fusing traditional design craft with AI-augmented workflows — bridging high-level strategy with hands-on execution across public-sector and global brands.</p>
+        <span class="eyebrow">BRAND ARCHITECT · EDUCATOR</span>
+        <h1>Fifteen years of building brands people actually remember.</h1>
+        <p class="lead">I'm a brand architect and educator who's spent the last fifteen years helping tourism boards, municipalities, and global brands figure out who they are — and helping the next generation of designers learn to do the same.</p>
         <div class="actions">
           <a class="btn btn-primary" href="Neil Bernardo - Resume.pdf">Download resume</a>
           <a class="btn btn-secondary" href="mailto:bernardoneil0@gmail.com">Contact me</a>
@@ -78,7 +81,7 @@
 
     <div class="card summary-card" style="margin-top:48px; max-width:710px;">
       <span class="label">Professional Summary</span>
-      <p>Visionary creative leader and design technologist with over 15 years of experience architecting award-winning brand ecosystems. Specialized in fusing traditional design principles with AI-augmented workflows and emerging technologies to drive high-impact visual storytelling. Proven track record bridging high-level strategy with hands-on execution, orchestrating cross-functional teams, and implementing accessibility-first UX standards for public-sector and global clients.</p>
+      <p>I'm a brand architect and educator with 15+ years building brand ecosystems for tourism boards, municipalities, and global clients — plus time in the classroom teaching the next wave of designers how to think like one. I like solving the messy stuff: turning a scattered brand into something that actually feels like one thing, leading the teams who help make that happen, and passing along what I've learned along the way.</p>
     </div>
   </header>
 
@@ -245,5 +248,6 @@
     })();
   </script>
 
+  <script src="nav.js" defer></script>
 </body>
 </html>
