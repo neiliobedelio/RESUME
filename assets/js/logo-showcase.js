@@ -87,7 +87,21 @@
 
   function stop() {
     if (timer) { window.clearInterval(timer); timer = null; }
-    if (resetTimer) { window.clearTimeout(resetTimer); resetTimer = null; }
+    if (resetTimer) {
+      window.clearTimeout(resetTimer);
+      resetTimer = null;
+      // A reset was pending: we're paused mid-loop on the trailing
+      // duplicate frame (slot === logos.length). Finish that snap-back
+      // immediately instead of leaving it cancelled, otherwise the next
+      // advance() increments slot past the last real frame (there's no
+      // frameSrcs[logos.length + 1]) and the reel scrolls into empty
+      // space — the reel gets stuck showing nothing, and every logo
+      // after whichever one was on screen when the user hovered stops
+      // rotating in. This is the "never gets to the last logo" bug:
+      // hovering to look closely is exactly when this window is hit.
+      slot = 0;
+      setSlot(slot, false);
+    }
   }
 
   if (reduce) {

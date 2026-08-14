@@ -70,22 +70,22 @@ img { max-width: 100%; display: block; }
   z-index: 50;
 }
 .nav-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 20px;
   color: var(--ink);
 }
 .nav-logo-mark {
-  height: 28px;
-  width: auto;
+  width: 50px;
+  height: auto;
   display: block;
 }
 .nav-logo-divider {
   width: 1px;
-  height: 20px;
+  height: 28px;
   background: var(--border);
 }
 .nav-links {
