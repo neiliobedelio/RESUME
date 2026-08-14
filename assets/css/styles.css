@@ -70,24 +70,23 @@ img { max-width: 100%; display: block; }
   z-index: 50;
 }
 .nav-logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 20px;
   color: var(--ink);
 }
 .nav-logo-mark {
-  height: 1em;
+  height: 28px;
   width: auto;
   display: block;
 }
 .nav-logo-divider {
   width: 1px;
-  height: 1em;
+  height: 20px;
   background: var(--border);
-  display: block;
 }
 .nav-links {
   display: flex;

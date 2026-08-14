@@ -21,11 +21,24 @@
   }
   if (logos.length < 2) return;
   var frameSrcs = logos.concat([logos[0]]);
+  var frameCount = frameSrcs.length;
+  var framePct = 100 / frameCount;
 
+  // The markup ships with a fixed 3 frames per column (built for the
+  // original 2-logo rotation). Rebuild each reel's frames here so the count
+  // — and each frame's height/position — always matches the actual logo
+  // list, however many logos are configured.
   cols.forEach(function (col) {
-    var frames = Array.prototype.slice.call(col.querySelectorAll('.logo-frame'));
-    frames.forEach(function (frame, i) {
-      frame.style.backgroundImage = 'url("' + frameSrcs[i] + '")';
+    var reel = col.querySelector('.logo-reel');
+    reel.style.height = (frameCount * 100) + '%';
+    reel.innerHTML = '';
+    frameSrcs.forEach(function (src, i) {
+      var frame = document.createElement('div');
+      frame.className = 'logo-frame';
+      frame.style.top = (i * framePct) + '%';
+      frame.style.height = framePct + '%';
+      frame.style.backgroundImage = 'url("' + src + '")';
+      reel.appendChild(frame);
     });
   });
 
@@ -42,7 +55,7 @@
   function setSlot(slotIndex, animate) {
     reels.forEach(function (reel) {
       if (!animate) reel.classList.add('no-transition');
-      reel.style.transform = 'translateY(-' + (slotIndex * (100 / 3)) + '%)';
+      reel.style.transform = 'translateY(-' + (slotIndex * framePct) + '%)';
       if (!animate) {
         // force reflow so the transition-less jump applies immediately
         void reel.offsetWidth;
