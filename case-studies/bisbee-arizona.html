@@ -17,31 +17,101 @@
 body { margin: 0; font-family: 'Inter', sans-serif; background: #f7f3ec; color: #55493d; }
 a { color: #9c4b30; } a:hover { color: #7a3a25; }
 img { max-width: 100%; }
-
-.hv1:hover,.hv1:focus-visible{color:#9c4b30 !important;}
+html { scroll-behavior: smooth; }
+#overview, #process, #research, #audit, #creative, #delivery { scroll-margin-top: 150px; }
+.hv1:hover,.hv1:focus-visible{background:#ede6d9 !important;}
 .hv2:hover,.hv2:focus-visible{background:#9c4b30 !important;}
-.hv3:hover,.hv3:focus-visible{background:#ede6d9 !important;}
-.hv4:hover,.hv4:focus-visible{background:#3d362c !important;}
-html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
+.hv3:hover,.hv3:focus-visible{background:#3d362c !important;}
+
+/* Primary nav (same as site styles.css) */
+.site-header { position: sticky; top: 0; z-index: 50; }
+.nav { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #ddd0bd; background: #f7f3ec; line-height: 1.5; }
+.nav a { text-decoration: none; }
+.nav-logo { display: inline-flex; align-items: center; gap: 14px; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 20px; color: #211d18; }
+.nav-logo-mark { width: 50px; height: auto; display: block; }
+.nav-logo-divider { width: 1px; height: 28px; background: #ddd0bd; }
+.nav-links { display: flex; gap: 32px; font-size: 15px; font-weight: 500; }
+.nav-links a { color: #211d18; }
+.nav-links a.active, .nav-links a:hover { color: #b5583a; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; border-radius: 8px; padding: 11px 20px; border: none; cursor: pointer; }
+.btn-primary { background: #b5583a; color: #fff8f2 !important; }
+.btn-primary:hover { background: #9c4b30; }
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 0; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: #211d18; border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Case study subnav */
+.cs-sub { position: relative; background: #f7f3ec; border-bottom: 1px solid #ddd0bd; }
+.cs-sub-inner { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); display: flex; align-items: center; gap: 24px; min-height: 48px; }
+.cs-crumb { flex-shrink: 0; font-size: 13px; color: #6e6253; white-space: nowrap; }
+.cs-crumb a { color: #6e6253; text-decoration: none; }
+.cs-crumb a:hover { color: #9c4b30; }
+.cs-crumb span[aria-hidden] { margin: 0 6px; color: #a89a84; }
+.cs-crumb span[aria-current] { color: #211d18; font-weight: 600; }
+.cs-links { flex: 1; min-width: 0; display: flex; justify-content: flex-end; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.cs-links::-webkit-scrollbar { display: none; }
+.cs-link { display: inline-flex; align-items: center; min-height: 48px; box-sizing: border-box; padding: 0 12px; font-size: 14px; font-weight: 500; white-space: nowrap; text-decoration: none; color: #55493d; border-bottom: 2px solid transparent; }
+.cs-link:hover { color: #9c4b30; }
+.cs-link[aria-current="page"] { color: #9c4b30; border-bottom-color: #b5583a; }
+.cs-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: #b5583a; }
+
+@media (max-width: 860px) {
+  .nav { padding: 16px 20px; }
+  .nav-toggle { display: flex; }
+  .nav-right { display: none; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 2px; background: #f7f3ec; border-bottom: 1px solid #ddd0bd; padding: 8px 20px 20px; z-index: 2; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid #ddd0bd; }
+  .nav-links a:last-child { border-bottom: none; }
+  .cs-crumb { display: none; }
+  .cs-links { justify-content: flex-start; gap: 8px; padding: 8px 0; }
+  .cs-link { min-height: 36px; padding: 0 14px; border: 1px solid #ddd0bd; border-radius: 999px; font-size: 13.5px; }
+  .cs-link[aria-current="page"] { background: #211d18; color: #f7f3ec; border-color: #211d18; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
+<div id="cs-root" style="font-size:16px; line-height:1.55; background:#f7f3ec;">
 
-<div style="font-size:16px; line-height:1.55; background:#f7f3ec;">
-
-  <nav style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px 32px; padding:18px clamp(16px, 4vw, 40px); border-bottom:1px solid #ddd0bd; background:#f7f3ec; position:sticky; top:0; z-index:50;">
-    <a href="/RESUME/" style="font-family:'Fraunces',serif; font-style:italic; font-size:20px; color:#211d18; text-decoration:none;">Neil Bernardo</a>
-    <div style="display:flex; flex-wrap:wrap; gap:8px 28px; font-size:15px; font-weight:500;">
-      <a href="#research" style="color:#211d18; text-decoration:none;" class="hv1">Research</a>
-      <a href="#process" style="color:#211d18; text-decoration:none;" class="hv1">Process</a>
-      <a href="#delivery" style="color:#211d18; text-decoration:none;" class="hv1">Delivery</a>
-      <a href="/RESUME/projects.html" style="color:#211d18; text-decoration:none;" class="hv1">All projects</a>
+  <div class="site-header">
+  <nav class="nav">
+    <a class="nav-logo" href="/RESUME/"><img class="nav-logo-mark" src="/RESUME/images/nb-logo.png" alt=""><span class="nav-logo-divider" aria-hidden="true"></span>Neil Bernardo</a>
+    <div class="nav-links" id="nav-links">
+      <a href="/RESUME/#experience">Experience</a>
+      <a href="/RESUME/#skills">Skills</a>
+      <a href="/RESUME/#education">Education</a>
+      <a href="/RESUME/projects.html" class="active" aria-current="page">Projects</a>
     </div>
-    <a href="mailto:bernardoneil0@gmail.com" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#b5583a; color:#fff8f2; text-decoration:none;" class="hv2">Get in touch</a>
+    <div class="nav-right">
+      <a class="btn btn-primary" href="mailto:bernardoneil0@gmail.com">Get in touch</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+    <div class="cs-sub">
+      <div class="cs-sub-inner">
+        <nav aria-label="Breadcrumb" class="cs-crumb">
+          <a href="/RESUME/projects.html">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Bisbee, AZ</span>
+        </nav>
+        <nav aria-label="Case study sections" class="cs-links">
+            <a href="#overview" class="cs-link" aria-current="page">Overview</a>
+            <a href="#process" class="cs-link">Process</a>
+            <a href="#research" class="cs-link">Research</a>
+            <a href="#audit" class="cs-link">Audit</a>
+            <a href="#creative" class="cs-link">Creative</a>
+            <a href="#delivery" class="cs-link">Delivery</a>
+        </nav>
+      </div>
+      <div class="cs-progress" aria-hidden="true"></div>
+    </div>
+  </div>
 
-  <!-- HERO -->
-  <header style="background:#1c1714; color:#efe3c8;">
+    <header style="background:#1c1714; color:#efe3c8;">
     <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px) 56px;">
       <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;">
         <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#c9a04e; border:1px solid #4a3d33; border-radius:999px; padding:6px 14px;">Case study</span>
@@ -76,8 +146,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </header>
 
-  <!-- STATS -->
-  <section aria-label="Project at a glance" style="background:#ede6d9; border-bottom:1px solid #ddd0bd;">
+    <section aria-label="Project at a glance" style="background:#ede6d9; border-bottom:1px solid #ddd0bd;">
     <div style="max-width:1180px; margin:0 auto; padding:40px clamp(16px, 4vw, 40px); display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:28px;">
       <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">74</div><div style="font-size:14px; color:#55493d; margin-top:8px;">community survey responses</div></div>
       <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">3</div><div style="font-size:14px; color:#55493d; margin-top:8px;">visitor profiles from the focus group</div></div>
@@ -88,8 +157,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- CHALLENGE -->
-  <section style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <section id="overview" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
     <div style="display:flex; flex-wrap:wrap; gap:48px;">
       <div style="flex:1 1 420px; min-width:0;">
         <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">The challenge</span>
@@ -116,8 +184,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process" style="background:#ede6d9;">
+    <section id="process" style="background:#ede6d9;">
     <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
       <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">Process</span>
       <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:760px;">From what we heard to what we create.</h2>
@@ -152,8 +219,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- DESIGN RESEARCH -->
-  <section id="research" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <section id="research" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
     <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">Design research</span>
     <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:760px;">Let the town speak first.</h2>
     <p style="margin:0 0 36px; max-width:720px;">Before any visuals, I turned the raw inputs into artifacts the client could read in a minute. The survey’s open-ended comments became a weighted term map; the competing persona sets became a single crosswalk that shows where every source agrees.</p>
@@ -208,8 +274,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- NORTH STAR -->
-  <section aria-labelledby="northstar" style="background:#1c1714; color:#c9bea9;">
+    <section aria-labelledby="northstar" style="background:#1c1714; color:#c9bea9;">
     <div style="max-width:1180px; margin:0 auto; padding:clamp(64px, 9vw, 112px) clamp(16px, 4vw, 40px);">
       <span id="northstar" style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#c9a04e; margin-bottom:20px;">The hinge · north star</span>
       <p style="font-family:'Fraunces',serif; font-weight:400; color:#efe3c8; font-size:clamp(28px, 4vw, 48px); line-height:1.18; letter-spacing:-0.5px; margin:0; max-width:980px;">Bisbee is a real, authentic, welcoming, living town, not a theme park. The closer you look and the longer you stay, the more it gives back.</p>
@@ -226,8 +291,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- AUDIT -->
-  <section style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <section id="audit" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
     <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">Website audit</span>
     <div style="display:flex; flex-wrap:wrap; gap:32px 48px; align-items:flex-end; margin-bottom:36px;">
       <div style="flex:1 1 480px; min-width:0;">
@@ -272,8 +336,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- CREATIVE DIRECTION -->
-  <section style="background:#ede6d9;">
+    <section id="creative" style="background:#ede6d9;">
     <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
       <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">Creative direction</span>
       <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:800px;">Elevated, in every sense.</h2>
@@ -355,8 +418,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- DELIVERY -->
-  <section id="delivery" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <section id="delivery" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
     <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">Delivery</span>
     <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:800px;">Built to finish plans, not just start them.</h2>
     <p style="margin:0 0 36px; max-width:720px;">Phase 1 closed with two decks for the City of Bisbee and a two-track action plan: create the stories now, and build a new site to carry them.</p>
@@ -405,8 +467,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- HOW IT WAS MADE -->
-  <section style="background:#ede6d9;">
+    <section style="background:#ede6d9;">
     <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 88px) clamp(16px, 4vw, 40px);">
       <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">How it was made</span>
       <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(26px, 3vw, 36px); line-height:1.15; margin:0 0 28px; max-width:800px;">An AI-augmented workflow, with judgment kept human.</h2>
@@ -427,8 +488,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     </div>
   </section>
 
-  <!-- NEXT -->
-  <section style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 88px) clamp(16px, 4vw, 40px);">
+    <section style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 88px) clamp(16px, 4vw, 40px);">
     <div style="display:flex; flex-wrap:wrap; gap:32px 48px;">
       <div style="flex:1 1 360px; min-width:0;">
         <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">What’s next</span>
@@ -442,7 +502,7 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
       </ul>
     </div>
     <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:48px;">
-      <a href="/RESUME/projects.html" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#f7f3ec; color:#211d18; border:1px solid #ddd0bd; text-decoration:none;" class="hv3">← All projects</a>
+      <a href="/RESUME/projects.html" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#f7f3ec; color:#211d18; border:1px solid #ddd0bd; text-decoration:none;" class="hv1">← All projects</a>
       <a href="mailto:bernardoneil0@gmail.com" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#b5583a; color:#fff8f2; text-decoration:none;" class="hv2">Talk about a project</a>
     </div>
   </section>
@@ -451,13 +511,53 @@ html{scroll-behavior:smooth} [id]{scroll-margin-top:90px}
     <div style="max-width:1100px; margin:0 auto;">
       <div style="font-family:'Fraunces',serif; font-style:italic; font-size:22px; color:#fff; margin-bottom:24px;">Neil Bernardo</div>
       <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
-        <a href="mailto:bernardoneil0@gmail.com" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#2c2620; color:#c9bea9; border:1px solid #3d362c; text-decoration:none;" class="hv4">Email</a>
-        <a href="https://www.linkedin.com/in/bernardoneil0/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#2c2620; color:#c9bea9; border:1px solid #3d362c; text-decoration:none;" class="hv4">LinkedIn</a>
+        <a href="mailto:bernardoneil0@gmail.com" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#2c2620; color:#c9bea9; border:1px solid #3d362c; text-decoration:none;" class="hv3">Email</a>
+        <a href="https://www.linkedin.com/in/bernardoneil0/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#2c2620; color:#c9bea9; border:1px solid #3d362c; text-decoration:none;" class="hv3">LinkedIn</a>
         <span style="font-size:13px; color:#a89a84; margin-left:4px;">© 2026 Neil Bernardo · Work produced at Gordley Group for the City of Bisbee</span>
       </div>
     </div>
   </footer>
 
 </div>
+
+<script src="/RESUME/assets/js/nav.js" defer></script>
+<script>
+(function () {
+  var ids = ['overview', 'process', 'research', 'audit', 'creative', 'delivery'];
+  var bar = document.querySelector('.cs-links');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.cs-link'));
+  var progress = document.querySelector('.cs-progress');
+  var current = 'overview';
+  var ticking = false;
+  function setActive(id) {
+    if (id === current) return;
+    current = id;
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    var on = bar.querySelector('[aria-current="page"]');
+    if (on && bar.scrollWidth > bar.clientWidth) {
+      bar.scrollTo({ left: Math.max(0, on.offsetLeft - (bar.clientWidth - on.offsetWidth) / 2), behavior: 'smooth' });
+    }
+  }
+  function measure() {
+    ticking = false;
+    var active = ids[0];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el && el.getBoundingClientRect().top - 160 <= 0) active = ids[i];
+    }
+    setActive(active);
+    var doc = document.documentElement;
+    var total = doc.scrollHeight - window.innerHeight;
+    progress.style.width = (total > 0 ? Math.min(100, Math.max(0, window.scrollY / total * 100)) : 0) + '%';
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(measure); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  measure();
+})();
+</script>
 </body>
 </html>
