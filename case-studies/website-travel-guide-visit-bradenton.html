@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Visit Bradenton — Integrated Website &amp; Print Travel Guide | Neil Bernardo</title>
 <link rel="stylesheet" href="/RESUME/assets/css/styles.css">
+<style>
+.home-viewer { margin: 0 0 44px; }
+.home-viewer-frame { border: 1px solid var(--border, #ddd0bd); border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px rgba(33, 29, 24, 0.08); }
+.home-viewer-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #ede6d9; border-bottom: 1px solid var(--border, #ddd0bd); }
+.home-viewer-bar span { width: 10px; height: 10px; border-radius: 50%; background: #c9bba4; }
+.home-viewer-bar em { margin-left: 10px; font-style: normal; font-size: 12.5px; color: #6e6253; }
+.home-viewer-scroll { max-height: 620px; overflow-y: auto; overscroll-behavior: contain; }
+.home-viewer-scroll img { display: block; width: 100%; height: auto; }
+.home-viewer figcaption { font-size: 13px; color: #6e6253; margin-top: 10px; }
+.home-viewer figcaption a { color: inherit; }
+@media (max-width: 860px) { .home-viewer-scroll { max-height: 460px; } }
+</style>
 </head>
 <body>
 
@@ -40,8 +52,21 @@
   </header>
 
   <section class="section case-content">
+    <figure class="home-viewer">
+      <div class="home-viewer-frame">
+        <div class="home-viewer-bar" aria-hidden="true"><span></span><span></span><span></span><em>Visit Bradenton Gulf Islands — homepage</em></div>
+        <div class="home-viewer-scroll" tabindex="0" role="region" aria-label="Full homepage design, scrollable">
+          <img src="/RESUME/assets/images/bradenton/homepage-full.jpg" alt="Full-length Visit Bradenton Gulf Islands homepage: a Real Authentic Florida hero, Real. Authentic. Charm intro with polaroid-style photos, See Yourself at the Bradenton Area Beaches, Fun For All, Getting Here and Where to Stay, sponsored resorts, a #RealAuthenticFlorida social grid and the footer." loading="lazy">
+        </div>
+      </div>
+      <figcaption>Scroll to see the full homepage. <a href="/RESUME/assets/images/bradenton/homepage-full.jpg" target="_blank" rel="noopener">Open full size ↗</a></figcaption>
+    </figure>
     <div class="case-body-grid">
       <div class="case-gallery">
+        <img src="/RESUME/assets/images/bradenton/home-charm.jpg" alt="Homepage intro: Real. Authentic. Charm on Florida’s West Coast, with a circular photo, a hand-drawn arrow and polaroid-style photo carousel." loading="lazy">
+        <img src="/RESUME/assets/images/bradenton/home-fun.jpg" alt="See Yourself at the Bradenton Area Beaches and Fun For All sections, with a dolphin badge and a Top Restaurants card." loading="lazy">
+        <img src="/RESUME/assets/images/bradenton/home-stay.jpg" alt="Getting Here and Where to Stay sections with circular photos, a shorebird illustration and sponsored resort cards." loading="lazy">
+        <img src="/RESUME/assets/images/bradenton/home-share.jpg" alt="Share the Love section with a sea turtle illustration and the #RealAuthenticFlorida social photo grid." loading="lazy">
         
         <img src="https://cdn.myportfolio.com/68e41229-eaac-4ebb-af28-d5b51bf8e88c/443b09d9-fe09-4fb2-a25e-83a6f6124a8d_rw_600.png?h=c5dac96ed1b12129cd26300cbca8fb61" alt="Visit Bradenton website and travel guide 1" loading="lazy">
         
