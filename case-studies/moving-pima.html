@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moving Pima — Pima County Transportation Master Plan | Neil Bernardo</title>
+<meta name="description" content="Logo, campaign assets, public engagement graphics and information design for Pima County’s first Transportation Master Plan.">
+<style>
+@font-face { font-family: 'Fraunces'; src: url('/RESUME/assets/fonts/Fraunces-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/RESUME/assets/fonts/Fraunces-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/RESUME/assets/fonts/Fraunces-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('/RESUME/assets/fonts/Fraunces-400italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+body { margin: 0; font-family: 'Inter', sans-serif; background: #f7f3ec; color: #55493d; }
+a { color: #005f9e; } a:hover { color: #00467a; }
+img { max-width: 100%; }
+html { scroll-behavior: smooth; }
+#overview, #identity, #campaign, #engagement, #info, #results { scroll-margin-top: 150px; }
+.cs-links::-webkit-scrollbar { display: none; }
+@media (max-width: 860px) {
+  .cs-crumb { display: none !important; }
+  .cs-links { justify-content: flex-start !important; gap: 8px !important; padding: 8px 0; }
+  .cs-links a { min-height: 36px !important; padding: 0 14px !important; border: 1px solid #ddd0bd !important; border-radius: 999px; font-size: 13.5px !important; }
+  .cs-links a[aria-current="page"] { background: #0d2b45; color: #f7f3ec !important; border-color: #0d2b45 !important; }
+  .mp-hero-grid { flex-direction: column; }
+  .mp-hero-cover { max-width: 360px !important; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.hv1:hover,.hv1:focus-visible{background:#ffffff !important;}
+.hv2:hover,.hv2:focus-visible{background:#9c4b30 !important;}
+.hv3:hover,.hv3:focus-visible{background:#3d362c !important;}
+.site-header { position: sticky; top: 0; z-index: 50; }
+.nav { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #ddd0bd; background: #f7f3ec; line-height: 1.5; font-family: 'Inter', sans-serif; }
+.nav a { text-decoration: none; }
+.nav-logo { display: inline-flex; align-items: center; gap: 14px; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 20px; color: #211d18 !important; }
+.nav-logo-mark { width: 50px; height: auto; display: block; }
+.nav-logo-divider { width: 1px; height: 28px; background: #ddd0bd; }
+.nav-links { display: flex; gap: 32px; font-size: 15px; font-weight: 500; }
+.nav-links a { color: #211d18; }
+.nav-links a.active, .nav-links a:hover { color: #b5583a; }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; border-radius: 8px; padding: 11px 20px; border: none; cursor: pointer; }
+.btn-primary { background: #b5583a; color: #fff8f2 !important; }
+.btn-primary:hover { background: #9c4b30; }
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 0; background: none; border: none; cursor: pointer; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: #211d18; border-radius: 2px; transition: transform 0.2s ease, opacity 0.2s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.cs-sub { position: relative; background: #f7f3ec; border-bottom: 1px solid #ddd0bd; font-family: 'Inter', sans-serif; }
+.cs-sub-inner { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); display: flex; align-items: center; gap: 24px; min-height: 48px; }
+.cs-crumb { flex-shrink: 0; font-size: 13px; color: #6e6253; white-space: nowrap; }
+.cs-crumb a { color: #6e6253; text-decoration: none; }
+.cs-crumb a:hover { color: #005f9e; }
+.cs-crumb span[aria-hidden] { margin: 0 6px; color: #a89a84; }
+.cs-crumb span[aria-current] { color: #211d18; font-weight: 600; }
+.cs-links { flex: 1; min-width: 0; display: flex; justify-content: flex-end; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.cs-links::-webkit-scrollbar { display: none; }
+.cs-link { display: inline-flex; align-items: center; min-height: 48px; box-sizing: border-box; padding: 0 12px; font-size: 14px; font-weight: 500; white-space: nowrap; text-decoration: none; color: #55493d !important; border-bottom: 2px solid transparent; }
+.cs-link:hover { color: #005f9e !important; }
+.cs-link[aria-current="page"] { color: #005f9e !important; border-bottom-color: #0077c8; }
+.cs-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: #0077c8; }
+@media (max-width: 860px) {
+  .nav { padding: 16px 20px; }
+  .nav-toggle { display: flex; }
+  .nav-right { display: none; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 2px; background: #f7f3ec; border-bottom: 1px solid #ddd0bd; padding: 8px 20px 20px; z-index: 2; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid #ddd0bd; }
+  .nav-links a:last-child { border-bottom: none; }
+  .cs-crumb { display: none; }
+  .cs-links { justify-content: flex-start; gap: 8px; padding: 8px 0; }
+  .cs-link { min-height: 36px; padding: 0 14px; border: 1px solid #ddd0bd; border-radius: 999px; font-size: 13.5px; }
+  .cs-link[aria-current="page"] { background: #0d2b45; color: #f7f3ec !important; border-color: #0d2b45; }
+}
+</style>
+</head>
+<body>
+<div id="cs-root" style="font-size:16px; line-height:1.55; background:#f7f3ec;">
+
+  <div class="site-header">
+  <nav class="nav">
+    <a class="nav-logo" href="/RESUME/"><img class="nav-logo-mark" src="/RESUME/images/nb-logo.png" alt=""><span class="nav-logo-divider" aria-hidden="true"></span>Neil Bernardo</a>
+    <div class="nav-links" id="nav-links">
+      <a href="/RESUME/#experience">Experience</a>
+      <a href="/RESUME/#skills">Skills</a>
+      <a href="/RESUME/#education">Education</a>
+      <a href="/RESUME/projects.html" class="active" aria-current="page">Projects</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-primary" href="mailto:bernardoneil0@gmail.com">Get in touch</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+    <div class="cs-sub">
+      <div class="cs-sub-inner">
+        <nav aria-label="Breadcrumb" class="cs-crumb">
+          <a href="/RESUME/projects.html">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Moving Pima</span>
+        </nav>
+        <nav aria-label="Case study sections" class="cs-links">
+          <a href="#overview" class="cs-link" aria-current="page">Overview</a>
+          <a href="#identity" class="cs-link">Identity</a>
+          <a href="#campaign" class="cs-link">Campaign</a>
+          <a href="#engagement" class="cs-link">Engagement</a>
+          <a href="#info" class="cs-link">Info design</a>
+          <a href="#results" class="cs-link">Results</a>
+        </nav>
+      </div>
+      <div class="cs-progress" aria-hidden="true"></div>
+    </div>
+  </div>
+
+    <header style="background:#0077c8; color:#ffffff; overflow:hidden;">
+    <div class="mp-hero-grid" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px) 0; display:flex; gap:56px; align-items:flex-end;">
+      <div style="flex:1 1 520px; min-width:0; padding-bottom:clamp(40px, 6vw, 72px);">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#0d2b45; background:#edaf1f; border-radius:999px; padding:6px 14px;">Case study</span>
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#ffffff; border:1px solid #6fb3e3; border-radius:999px; padding:6px 14px;">Public engagement · Transportation planning</span>
+        </div>
+        <h1 style="font-family:'Fraunces',serif; font-weight:400; color:#ffffff; letter-spacing:-1.5px; font-size:clamp(38px, 5.6vw, 68px); line-height:1.04; margin:0;">Moving Pima: a face, a voice and a map for a county’s first transportation plan.</h1>
+        <p style="font-size:clamp(17px, 2vw, 20px); line-height:1.55; color:#ffffff; max-width:620px; margin:24px 0 0;">Pima County’s first-ever Transportation Master Plan needed residents across 9,000 square miles to weigh in. I built the identity, the campaign and the graphics that carried it from Tucson festivals to rural pop-ups, and the information design that reported what happened.</p>
+        <dl style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:22px 32px; margin:44px 0 0; padding:26px 0 0; border-top:1px solid #4d9fd6;">
+          <div>
+            <dt style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#d6ebf8; margin-bottom:6px;">Client</dt>
+            <dd style="margin:0; font-size:15px; color:#ffffff;">Pima County Department of Transportation</dd>
+          </div>
+          <div>
+            <dt style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#d6ebf8; margin-bottom:6px;">My work</dt>
+            <dd style="margin:0; font-size:15px; color:#ffffff;">Logo, campaign assets, engagement graphics, information design</dd>
+          </div>
+          <div>
+            <dt style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#d6ebf8; margin-bottom:6px;">Timeline</dt>
+            <dd style="margin:0; font-size:15px; color:#ffffff;">February – September 2026</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="mp-hero-cover" style="flex:0 1 400px; min-width:0; max-width:400px; align-self:flex-end;">
+        <a href="/RESUME/assets/images/pima/page-1.jpg" target="_blank" rel="noopener" style="display:block;">
+          <img src="/RESUME/assets/images/pima/page-1.jpg" alt="Cover of the Pima County Transportation Master Plan Public Input Report: photos of residents at outreach events framed by white route-line shapes, with the Moving Pima and Pima County logos." style="display:block; width:100%; height:auto; border-radius:12px 12px 0 0; box-shadow:0 -8px 40px rgba(13, 43, 69, 0.35);">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div aria-hidden="true" style="display:flex; flex-direction:column; gap:0;">
+    <div style="height:8px; background:#0d2b45;"></div>
+    <div style="height:8px; background:#00b040;"></div>
+    <div style="height:8px; background:#82bf54;"></div>
+    <div style="height:8px; background:#edaf1f;"></div>
+  </div>
+
+    <section aria-label="Project at a glance" style="background:#ede6d9; border-bottom:1px solid #ddd0bd;">
+    <div style="max-width:1180px; margin:0 auto; padding:40px clamp(16px, 4vw, 40px); display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:28px;">
+      <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">6,200+</div><div style="font-size:14px; color:#55493d; margin-top:8px;">survey responses and map comments</div></div>
+      <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">21</div><div style="font-size:14px; color:#55493d; margin-top:8px;">community events and rural pop-ups</div></div>
+      <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">809K</div><div style="font-size:14px; color:#55493d; margin-top:8px;">geotargeted digital ad impressions</div></div>
+      <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">123K+</div><div style="font-size:14px; color:#55493d; margin-top:8px;">email sends and recipients</div></div>
+      <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">751</div><div style="font-size:14px; color:#55493d; margin-top:8px;">location-specific map comments</div></div>
+      <div><div style="font-family:'Fraunces',serif; font-size:44px; line-height:1; color:#211d18;">2</div><div style="font-size:14px; color:#55493d; margin-top:8px;">languages on every asset: English and Spanish</div></div>
+    </div>
+  </section>
+
+    <section id="overview" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <div style="display:flex; flex-wrap:wrap; gap:48px;">
+      <div style="flex:1 1 440px; min-width:0;">
+        <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">The challenge</span>
+        <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 20px;">One plan, a huge county, and no single channel that reaches everyone.</h2>
+        <p style="margin:0 0 16px;">The Transportation Master Plan sets long-range priorities for unincorporated Pima County, from Tucson’s edges to Ajo, Sells, Arivaca and Green Valley. As the county’s first, it had no existing name, look or audience, and it depended on residents telling the County where roads, bike lanes, sidewalks and transit fall short.</p>
+        <p style="margin:0 0 16px;">The engagement had to be transparent, multilingual and easy to join, and it had to repeat one consistent message across websites, ads, flyers, festivals, radio and email so that residents recognized it wherever they met it.</p>
+        <p style="margin:0;">Everything pointed to one place: <strong style="color:#211d18;">MovingPima.com</strong>, with an online survey and an interactive map where people could pin a specific concern.</p>
+      </div>
+      <aside style="flex:1 1 320px; min-width:0;">
+        <div style="background:#0d2b45; border-radius:16px; padding:28px 28px 8px; color:#d8e3ec;">
+          <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#edaf1f; margin-bottom:16px;">My scope</span>
+          <ol style="list-style:none; margin:0; padding:0;">
+            <li style="display:flex; gap:16px; padding:0 0 18px; margin-bottom:18px; border-bottom:1px solid #26445f;"><span style="font-family:'Fraunces',serif; font-size:26px; line-height:1; color:#edaf1f; width:30px; flex-shrink:0;">01</span><span><a href="#identity" style="color:#ffffff; font-weight:600; text-decoration:none;">Logo creation</a><br><span style="font-size:14.5px;">The Moving Pima mark, palette and brand system.</span></span></li>
+            <li style="display:flex; gap:16px; padding:0 0 18px; margin-bottom:18px; border-bottom:1px solid #26445f;"><span style="font-family:'Fraunces',serif; font-size:26px; line-height:1; color:#edaf1f; width:30px; flex-shrink:0;">02</span><span><a href="#campaign" style="color:#ffffff; font-weight:600; text-decoration:none;">Campaign assets</a><br><span style="font-size:14.5px;">Covers, illustration, web, video and social graphics.</span></span></li>
+            <li style="display:flex; gap:16px; padding:0 0 18px; margin-bottom:18px; border-bottom:1px solid #26445f;"><span style="font-family:'Fraunces',serif; font-size:26px; line-height:1; color:#edaf1f; width:30px; flex-shrink:0;">03</span><span><a href="#engagement" style="color:#ffffff; font-weight:600; text-decoration:none;">Public engagement support graphics</a><br><span style="font-size:14.5px;">Bilingual flyers, QR cards, stickers, email and partner kits.</span></span></li>
+            <li style="display:flex; gap:16px; padding:0 0 20px;"><span style="font-family:'Fraunces',serif; font-size:26px; line-height:1; color:#edaf1f; width:30px; flex-shrink:0;">04</span><span><a href="#info" style="color:#ffffff; font-weight:600; text-decoration:none;">Information design</a><br><span style="font-size:14.5px;">Maps, timelines and charts for the public input report.</span></span></li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+    <section id="identity" style="background:#ffffff; border-top:1px solid #ddd0bd; border-bottom:1px solid #ddd0bd;">
+    <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+      <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">01 · Logo creation</span>
+      <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:780px;">An M made of lanes.</h2>
+      <p style="margin:0 0 36px; max-width:720px;">The mark builds an M from overlapping, translucent bands, like travel lanes merging, in a palette that runs from county blue through desert greens to a warm citron. It had to sit comfortably beside the Pima County seal, survive a business-card QR layout and a sticker, and still read at email-signature size.</p>
+
+      <figure style="margin:0 0 28px; background:#f7f3ec; border:1px solid #ddd0bd; border-radius:16px; padding:clamp(28px, 6vw, 72px); display:flex; justify-content:center;">
+        <img src="/RESUME/assets/images/pima/logo.jpg" alt="The Moving Pima logo: an M formed from overlapping blue, green and yellow bands beside the words Moving Pima in blue." style="display:block; width:100%; max-width:640px; height:auto; mix-blend-mode:multiply;">
+      </figure>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:12px; margin-bottom:40px;">
+        <div><div style="height:64px; border-radius:10px; background:#0077c8;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">County Blue</div><div style="font-size:12.5px; color:#6e6253;">#0077C8</div></div>
+        <div><div style="height:64px; border-radius:10px; background:#59a6db;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">Sky</div><div style="font-size:12.5px; color:#6e6253;">#59A6DB</div></div>
+        <div><div style="height:64px; border-radius:10px; background:#005933;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">Forest</div><div style="font-size:12.5px; color:#6e6253;">#005933</div></div>
+        <div><div style="height:64px; border-radius:10px; background:#00b040;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">Green</div><div style="font-size:12.5px; color:#6e6253;">#00B040</div></div>
+        <div><div style="height:64px; border-radius:10px; background:#82bf54;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">Leaf</div><div style="font-size:12.5px; color:#6e6253;">#82BF54</div></div>
+        <div><div style="height:64px; border-radius:10px; background:#e3e31c;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">Citron</div><div style="font-size:12.5px; color:#6e6253;">#E3E31C</div></div>
+        <div><div style="height:64px; border-radius:10px; background:#edaf1f;"></div><div style="font-size:13px; font-weight:600; color:#211d18; margin-top:8px;">Route Gold</div><div style="font-size:12.5px; color:#6e6253;">#EDAF1F</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+        <figure style="margin:0;">
+          <a href="/RESUME/assets/images/pima/page-2.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/page-2.jpg" alt="Report contents page where the logo’s chevron bands become an oversized supergraphic running down the page." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+          <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">The mark scales up into a supergraphic, here running down the report’s contents page.</figcaption>
+        </figure>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <figure style="margin:0;">
+            <a href="/RESUME/assets/images/pima/coordination.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/coordination.jpg" alt="Partner graphic with the Moving Pima logo at the center of a five-point star linking county departments: Health, Development Services, School Superintendent, Digital Inclusion and Animal Care." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+            <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">At the center of a partner network: five county departments that shared the plan with their own audiences.</figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <a href="/RESUME/assets/images/pima/signature.jpg" target="_blank" rel="noopener" style="display:block; background:#ffffff; border:1px solid #ddd0bd; border-radius:12px; padding:16px;"><img src="/RESUME/assets/images/pima/signature.jpg" alt="Staff email signature block with a bilingual Click for survey prompt, a QR code and the Moving Pima logo." style="display:block; width:100%; max-width:360px; height:auto;"></a>
+            <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">At its smallest: the bilingual signature block every PCDOT staff member used through the outreach period.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="campaign" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">02 · Campaign assets</span>
+    <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:780px;">Your voice. Your routes. Your future.</h2>
+    <p style="margin:0 0 36px; max-width:720px;">The campaign put real people in motion — walkers, cyclists, wheelchair users, bus riders — on top of the route lines from the logo, so every piece showed who the plan was for. The same system stretched from report covers to the website, YouTube and Meta ads.</p>
+
+    <h3 style="font-size:17px; font-weight:700; color:#211d18; margin:0 0 6px;">Cover directions</h3>
+    <p style="margin:0 0 18px; font-size:15px; max-width:680px;">Three explorations for the plan’s report covers, all in County Blue: a crosswalk with a runner and a cyclist, a cropped rider with a bold diagonal wordmark, and a smiling cyclist crossing a ribbon of route color over Tucson landmarks.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-bottom:44px;">
+      <figure style="margin:0;"><a href="/RESUME/assets/images/pima/cover-1.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/cover-1.jpg" alt="Cover concept A: a runner and a cyclist crossing a white crosswalk on blue, with Mission San Xavier and a saguaro behind and the Moving Pima wordmark." style="display:block; width:100%; height:auto; border-radius:10px;"></a><figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">A · Crosswalk</figcaption></figure>
+      <figure style="margin:0;"><a href="/RESUME/assets/images/pima/cover-2.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/cover-2.jpg" alt="Cover concept B: a tightly cropped cyclist in blue duotone cut by white diagonal bands under a large Moving Pima headline." style="display:block; width:100%; height:auto; border-radius:10px;"></a><figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">B · Diagonal</figcaption></figure>
+      <figure style="margin:0;"><a href="/RESUME/assets/images/pima/cover-3.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/cover-3.jpg" alt="Cover concept C: a smiling cyclist riding toward the viewer, a green-to-orange route ribbon behind her, over blue-toned Tucson landmarks." style="display:block; width:100%; height:auto; border-radius:10px;"></a><figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">C · Ribbon</figcaption></figure>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/page-3.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/page-3.jpg" alt="Report introduction page with an illustration of a wheelchair athlete, a cyclist and a bus riding along blue, green and gold route lines." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">Signature illustration: every mode of travel riding the same route lines.</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/page-9.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/page-9.jpg" alt="MovingPima.com in English and Spanish, with the interactive comment map and the mobile survey." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">MovingPima.com: bilingual hub for the survey and the interactive map.</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/social.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/social.jpg" alt="Influencer reel insights on Instagram and TikTok above the Moving Pima YouTube video title card." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd; background:#ffffff;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;">Video and social: the branded YouTube title card and influencer reels with Tucson Localista.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <section id="engagement" style="background:#0d2b45; color:#d8e3ec;">
+    <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+      <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#edaf1f; margin-bottom:14px;">03 · Public engagement support graphics</span>
+      <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#ffffff; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:800px;">Every table, counter and inbox, one tap from the survey.</h2>
+      <p style="margin:0 0 36px; max-width:720px;">The outreach team needed things to hand out, post and forward. Every piece carries the mark, a single call to action and a QR code to MovingPima.com, with English and Spanish versions throughout, so a resident at a swap meet, an animal-care counter or a permit portal could join in seconds.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin-bottom:36px;">
+        <figure style="margin:0;">
+          <a href="/RESUME/assets/images/pima/flyers.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/flyers.jpg" alt="Two bilingual flyers: Tu voz. Tus rutas. Tu futuro. and Your Voice. Your Routes. Your Future., each with route-line illustration and a QR code." style="display:block; width:100%; height:auto; border-radius:12px;"></a>
+          <figcaption style="font-size:13px; color:#b9c8d6; margin-top:10px;">Two flyer versions, each in English and Spanish, posted at local businesses, county counters and pop-ups.</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <a href="/RESUME/assets/images/pima/cards.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/cards.jpg" alt="Business card reading We want to hear from you! and a die-cut sticker, both with the logo and a QR code to MovingPima.com." style="display:block; width:100%; height:auto; border-radius:12px;"></a>
+          <figcaption style="font-size:13px; color:#b9c8d6; margin-top:10px;">QR business cards and stickers: take-home reminders that kept working after the event.</figcaption>
+        </figure>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:32px; align-items:center;">
+        <figure style="margin:0; flex:1 1 360px; min-width:0;">
+          <a href="/RESUME/assets/images/pima/email.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/email.jpg" alt="Email newsletter header on a phone: the Moving Pima logo, a Share Your Input Today QR code, and the opening lines of the message." style="display:block; width:100%; height:auto; border-radius:12px;"></a>
+          <figcaption style="font-size:13px; color:#b9c8d6; margin-top:10px;">Email header for county and partner sends.</figcaption>
+        </figure>
+        <ul style="flex:1 1 320px; min-width:0; list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px;">
+          <li style="border-top:2px solid #edaf1f; padding-top:14px;"><strong style="color:#ffffff;">Partner toolkit.</strong> Ready-to-share English and Spanish graphics, a printable flyer and suggested newsletter copy, sent to about 150 community organizations.</li>
+          <li style="border-top:2px solid #00b040; padding-top:14px;"><strong style="color:#ffffff;">Paper survey.</strong> 320 completed by residents without internet access or who wanted help.</li>
+          <li style="border-top:2px solid #59a6db; padding-top:14px;"><strong style="color:#ffffff;">Digital touchpoints.</strong> Banner and Meta ads, a permit-portal prompt and PCDOT email signatures, all pointing to the same URL.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+    <section id="info" style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+    <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">04 · Information design</span>
+    <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 12px; max-width:800px;">Showing where, when and how far the conversation reached.</h2>
+    <p style="margin:0 0 36px; max-width:720px;">The 18-page Public Input Report had to prove the outreach was broad and fair. I turned event logs, ad reports and coverage data into maps and charts the County could hand to its leadership and the public, each one answering a single question.</p>
+
+    <figure style="margin:0 0 12px;">
+      <a href="/RESUME/assets/images/pima/event-map.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/event-map.jpg" alt="Map of the Tucson metro and Pima County with 21 numbered event pins, paired with a table listing each event by month from February to July." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+      <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;"><strong style="color:#211d18;">Where did we show up?</strong> 21 numbered events and pop-ups, keyed to a month-by-month table.</figcaption>
+    </figure>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin:28px 0;">
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/timeline.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/timeline.jpg" alt="Line chart of survey responses, map comments and total input rising from March to July, with numbered markers for each outreach action and a month-by-month legend." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;"><strong style="color:#211d18;">What moved the needle?</strong> Input over time, with each event, ad flight and news story pinned to the curve and color-coded as event, digital or traditional media.</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/calendar.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/calendar.jpg" alt="Community outreach calendar listing every activity by month from February to July, color-coded by type." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;"><strong style="color:#211d18;">What happened when?</strong> The full outreach calendar, using the same three-color key.</figcaption>
+      </figure>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/zip-map.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/zip-map.jpg" alt="Choropleth map of Pima County ZIP codes shaded in six blue steps by total ad impressions, from none to over 100,000." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;"><strong style="color:#211d18;">Did the ads reach rural ZIP codes?</strong> Impressions by ZIP, from Green Valley to Ajo, Sells and Sasabe.</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/impressions.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/impressions.jpg" alt="Table of total impressions by ad type and phase: English and Spanish banners and Meta ads across three phases, totaling 809,222." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;"><strong style="color:#211d18;">How did Spanish reach grow?</strong> Three ad phases side by side; Spanish banners rose to 135,747 impressions in Phase III.</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <a href="/RESUME/assets/images/pima/radio.jpg" target="_blank" rel="noopener" style="display:block;"><img src="/RESUME/assets/images/pima/radio.jpg" alt="Map of southern Arizona with overlapping colored contours showing the coverage of five Bustos Media radio stations around Tucson." style="display:block; width:100%; height:auto; border-radius:12px; border:1px solid #ddd0bd;"></a>
+        <figcaption style="font-size:13px; color:#6e6253; margin-top:10px;"><strong style="color:#211d18;">Who could hear the PSAs?</strong> Radio coverage traced from station maps, labeled in the report as approximate.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <section id="results" style="background:#ede6d9;">
+    <div style="max-width:1180px; margin:0 auto; padding:clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);">
+      <span style="display:block; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#6e6253; margin-bottom:14px;">Results</span>
+      <div style="display:flex; flex-wrap:wrap; gap:40px 56px; align-items:flex-start;">
+        <div style="flex:1 1 460px; min-width:0;">
+          <h2 style="font-family:'Fraunces',serif; font-weight:400; color:#211d18; letter-spacing:-0.5px; font-size:clamp(28px, 3.4vw, 40px); line-height:1.15; margin:0 0 20px;">More than 6,200 voices to shape 30 years of roads, paths and transit.</h2>
+          <p style="margin:0 0 16px;">From February through July 2026, the consistent Moving Pima identity tied together festivals, rural pop-ups, ads, email, TV, radio and an influencer campaign. In-person outreach alone reached an estimated 1,000 to 1,200 residents, and input rose sharply after the July pushes.</p>
+          <p style="margin:0;">The Public Input Report closed the loop, documenting every channel for county leadership and the public, and the input will guide the plan’s priorities.</p>
+        </div>
+        <figure style="flex:1 1 340px; min-width:0; margin:0; background:#0077c8; border-radius:16px; padding:32px;">
+          <blockquote style="margin:0; font-family:'Fraunces',serif; font-size:26px; line-height:1.28; color:#ffffff;">“There is no single outreach strategy that can reach every community across unincorporated Pima County.”</blockquote>
+          <figcaption style="margin-top:16px; font-size:13px; color:#d6ebf8;">Public Input Report, conclusion</figcaption>
+        </figure>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-top:44px;">
+        <div style="border-top:2px solid #0077c8; padding-top:16px;"><div style="font-family:'Fraunces',serif; font-size:30px; color:#211d18;">4</div><p style="margin:4px 0 0; font-size:14.5px;">TV stories on KVOA, KOLD and KGUN 9.</p></div>
+        <div style="border-top:2px solid #0077c8; padding-top:16px;"><div style="font-family:'Fraunces',serif; font-size:30px; color:#211d18;">3</div><p style="margin:4px 0 0; font-size:14.5px;">Radio interviews, including Tohono Oʼodham Nation and Pascua Yaqui stations.</p></div>
+        <div style="border-top:2px solid #0077c8; padding-top:16px;"><div style="font-family:'Fraunces',serif; font-size:30px; color:#211d18;">~150</div><p style="margin:4px 0 0; font-size:14.5px;">Community organizations sent the bilingual partner toolkit.</p></div>
+        <div style="border-top:2px solid #0077c8; padding-top:16px;"><div style="font-family:'Fraunces',serif; font-size:30px; color:#211d18;">5</div><p style="margin:4px 0 0; font-size:14.5px;">County departments sharing Moving Pima with their own audiences.</p></div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:48px;">
+        <a href="/RESUME/projects.html" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#f7f3ec; color:#211d18; border:1px solid #ddd0bd; text-decoration:none;" class="hv1">← All projects</a>
+        <a href="mailto:bernardoneil0@gmail.com" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#b5583a; color:#fff8f2; text-decoration:none;" class="hv2">Talk about a project</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="nb-pad" style="background:#211d18; color:#c9bea9; padding:56px clamp(16px, 4vw, 40px) 40px;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="font-family:'Fraunces',serif; font-style:italic; font-size:22px; color:#fff; margin-bottom:24px;">Neil Bernardo</div>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+        <a href="mailto:bernardoneil0@gmail.com" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#2c2620; color:#c9bea9; border:1px solid #3d362c; text-decoration:none;" class="hv3">Email</a>
+        <a href="https://www.linkedin.com/in/bernardoneil0/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; box-sizing:border-box; font-size:14px; font-weight:500; border-radius:8px; padding:11px 20px; background:#2c2620; color:#c9bea9; border:1px solid #3d362c; text-decoration:none;" class="hv3">LinkedIn</a>
+        <span style="font-size:13px; color:#a89a84; margin-left:4px;">© 2026 Neil Bernardo · Work produced for Pima County Department of Transportation</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="/RESUME/assets/js/nav.js" defer></script>
+<script>
+(function () {
+  var ids = ["overview", "identity", "campaign", "engagement", "info", "results"];
+  var bar = document.querySelector('.cs-links');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.cs-link'));
+  var progress = document.querySelector('.cs-progress');
+  var current = ids[0];
+  var ticking = false;
+  function setActive(id) {
+    if (id === current) return;
+    current = id;
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    var on = bar.querySelector('[aria-current="page"]');
+    if (on && bar.scrollWidth > bar.clientWidth) {
+      bar.scrollTo({ left: Math.max(0, on.offsetLeft - (bar.clientWidth - on.offsetWidth) / 2), behavior: 'smooth' });
+    }
+  }
+  function measure() {
+    ticking = false;
+    var active = ids[0];
+    for (var i = 0; i < ids.length; i++) {
+      var el = document.getElementById(ids[i]);
+      if (el && el.getBoundingClientRect().top - 160 <= 0) active = ids[i];
+    }
+    setActive(active);
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (total > 0 ? Math.min(100, Math.max(0, window.scrollY / total * 100)) : 0) + '%';
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(measure); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  measure();
+})();
+</script>
+</body>
+</html>
