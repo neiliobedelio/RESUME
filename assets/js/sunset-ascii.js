@@ -50,6 +50,48 @@
     ctx.textBaseline = 'top';
   }
 
+
+  // Clouds: puffy ASCII cumulus that drift left to right with scroll (each at its own speed).
+  var CLOUDS = [
+    { x: -6, y: 13, w: 30, h: 8, speed: 1.0, seed: 3 },
+    { x: 46, y: 8, w: 22, h: 6, speed: 0.55, seed: 11 },
+    { x: 78, y: 21, w: 26, h: 7, speed: 1.35, seed: 23 },
+    { x: 22, y: 31, w: 18, h: 5, speed: 0.8, seed: 41 },
+    { x: 104, y: 16, w: 20, h: 6, speed: 0.7, seed: 57 }
+  ];
+  CLOUDS.forEach(function (cl) {
+    var rnd = function () { cl.seed = (cl.seed * 9301 + 49297) % 233280; return cl.seed / 233280; };
+    var n = 5 + Math.floor(rnd() * 2);
+    cl.puffs = [];
+    for (var k = 0; k < n; k++) {
+      var px = -0.42 + 0.84 * (k / (n - 1)) + (rnd() - 0.5) * 0.08;
+      var big = 1 - Math.abs(px) * 1.1;
+      cl.puffs.push([px, -0.1 - big * 0.35 + rnd() * 0.15, 0.16 + big * 0.14 + rnd() * 0.05, 0.55 + big * 0.5]);
+    }
+  });
+  var CLOUD_TOP = hex('#fff3e4'), CLOUD_BOT = hex('#e7ad86'), CLOUD_INK = hex('#b5583a');
+  function cloudsAt(p, vw, vh) {
+    return CLOUDS.map(function (cl) {
+      var cx = ((cl.x + p * cl.speed * 130) % 180 + 180) % 180 - 40;
+      return { cx: cx * vw, cy: cl.y * vh, w: cl.w * vw, h: cl.h * vh, puffs: cl.puffs };
+    });
+  }
+  function cloudDensity(list, px, py) {
+    var best = 0, bt = 0;
+    for (var q = 0; q < list.length; q++) {
+      var cl = list[q], dx = (px - cl.cx) / cl.w, dy = (py - cl.cy) / cl.h;
+      if (dx < -0.8 || dx > 0.8 || dy < -1.6 || dy > 0.7) continue;
+      var d = 0;
+      for (var k = 0; k < cl.puffs.length; k++) {
+        var pf = cl.puffs[k], ex = (dx - pf[0]) / pf[2], ey = (dy - pf[1]) / pf[3];
+        var v = 1 - (ex * ex + ey * ey);
+        if (v > d) d = v;
+      }
+      if (dy > 0.3) d *= Math.max(0, 1 - (dy - 0.3) * 5);
+      if (d > best) { best = d; bt = Math.min(1, Math.max(0, (dy + 1.2) / 1.6)); }
+    }
+    return [best, bt];
+  }
   function draw(p) {
     var vh = H / 100, a = p * 1440 * Math.PI / 180;
     var mobile = W < 860;
@@ -64,6 +106,7 @@
       }
       return t;
     });
+    var cloudList = cloudsAt(p, W / 100, vh);
     ctx.font = font;
     for (var r = 0; r < rows; r++) {
       var y = r * ch;
@@ -92,6 +135,17 @@
             var idx = Math.max(0, Math.min(SKY_RAMP.length - 1, Math.floor(glow * 5 + n * 2.2)));
             glyph = SKY_RAMP.charAt(idx);
             fg = rgb(mix(base, hex('#a8532f'), 0.32 + glow * 0.4));
+          }
+          var cd = cloudDensity(cloudList, x + cw / 2, y + ch / 2);
+          if (cd[0] > 0.1) {
+            var under = hex(bg.charAt(0) === '#' ? bg : '#000000');
+            var a2 = Math.min(1, (cd[0] - 0.1) / 0.3);
+            var ccol = mix(CLOUD_TOP, CLOUD_BOT, cd[1]);
+            var baseRgb = bg.charAt(0) === 'r' ? bg.slice(4, -1).split(',').map(Number) : under;
+            var cb = mix(baseRgb, ccol, a2);
+            bg = rgb(cb);
+            fg = rgb(mix(cb, CLOUD_INK, 0.22 + cd[1] * 0.25));
+            glyph = cd[0] > 0.55 ? (cd[1] > 0.62 ? '=' : '~') : (cd[0] > 0.28 ? '-' : (a2 > 0.2 ? '.' : glyph));
           }
         }
         ctx.fillStyle = bg; ctx.fillRect(x, y, cw, ch);
