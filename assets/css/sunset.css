@@ -1,0 +1,81 @@
+/* Scroll-driven sunset backdrop, inspired by Giedre Ju's "Sunset Waves Scroll" (CodePen). */
+.sunset {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  --a: 0deg; --sink: 0vh;
+  background: radial-gradient(circle 500vh at 50% calc(46vh + var(--sink)), #b5583a 0 24vh, #f6e7cf 24.6vh, #ecc9a2 90vh, #7a3a25 400vh);
+}
+.sunset-wave { position: absolute; inset: auto 0 0 0; height: 72vh; display: flex; align-items: flex-end; }
+.sunset-wave i {
+  flex: 1;
+  height: calc(var(--base) + sin(calc(var(--a) * var(--speed) + var(--i) * var(--step) + var(--off))) * var(--swing) * var(--amp));
+  height: round(down, calc(var(--base) + sin(calc(var(--a) * var(--speed) + var(--i) * var(--step) + var(--off))) * var(--swing) * var(--amp)), 8px);
+  background: linear-gradient(var(--c1), var(--c2));
+  -webkit-mask-image: repeating-linear-gradient(0deg, #000 0 6px, transparent 0 8px);
+  mask-image: repeating-linear-gradient(0deg, #000 0 6px, transparent 0 8px);
+}
+.sunset-grain {
+  position: absolute; inset: 0; mix-blend-mode: overlay; opacity: 0.3;
+  background-image: radial-gradient(rgb(255 255 255 / 0.9) 0.6px, transparent 0.9px), radial-gradient(rgb(255 255 255 / 0.7) 0.5px, transparent 0.8px), radial-gradient(rgb(0 0 0 / 0.8) 0.6px, transparent 0.9px), radial-gradient(rgb(0 0 0 / 0.6) 0.5px, transparent 0.8px);
+  background-size: 3px 3px, 5px 5px, 7px 7px, 11px 11px; background-position: 1px 2px, 3px 1px, 2px 5px, 7px 4px;
+}
+
+/* Page floats above the scene on paper panels */
+body.has-sunset { background: #7a3a25; }
+body.has-sunset > *:not(.sunset):not(.nav) { position: relative; z-index: 1; }
+body.has-sunset .nav { z-index: 50; }
+body.has-sunset .section-alt { background: transparent; }
+body.has-sunset .hero,
+body.has-sunset .section,
+body.has-sunset .section-alt > .section-inner {
+  background: rgb(247 243 236 / 0.94);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgb(221 208 189 / 0.9);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgb(33 29 24 / 0.18);
+  max-width: 1100px;
+  margin: 0 auto 7vh;
+  box-sizing: border-box;
+}
+body.has-sunset .hero { margin-top: 50vh; }
+body.has-sunset .section-alt > .section-inner { background: rgb(237 230 217 / 0.95); }
+body.has-sunset footer { margin-top: 22vh; }
+
+.sunset-name {
+  position: absolute; left: 0; right: 0; top: 30vh; text-align: center; padding: 0 20px;
+  transform: translateY(calc(var(--sink) * -0.6)); opacity: calc(1 - var(--p, 0) * 5);
+}
+.sunset-name p { margin: 0; color: #fff8f2; }
+.sunset-name .k { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+.sunset-name .n { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(42px, 7vw, 92px); line-height: 1; letter-spacing: -1.5px; }
+
+@media (max-width: 860px) {
+  body.has-sunset .hero,
+  body.has-sunset .section,
+  body.has-sunset .section-alt > .section-inner { margin-left: 12px; margin-right: 12px; border-radius: 18px; }
+  body.has-sunset .hero { margin-top: 46vh; }
+  .sunset { background: radial-gradient(circle 500vh at 50% calc(42vh + var(--sink)), #b5583a 0 20vh, #f6e7cf 20.6vh, #ecc9a2 80vh, #7a3a25 400vh); }
+}
+@media (max-width: 860px) { .sunset-name { top: 28vh; } }
+
+/* ASCII variant: the canvas paints the whole scene */
+.sunset-canvas { position: absolute; inset: 0; display: block; }
+.sunset:has(.sunset-canvas) { background: #f6e7cf; }
+.sunset-name { z-index: 2; }
+.sunset-name .n, .sunset-name .k { text-shadow: 0 1px 0 rgb(143 63 37 / 0.6), 0 0 18px rgb(143 63 37 / 0.55); }
+
+/* Headline type: Big Shoulders Display (OFL) */
+@font-face { font-family: 'Big Shoulders Display'; src: url('../fonts/BigShouldersDisplay-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Big Shoulders Display'; src: url('../fonts/BigShouldersDisplay-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+body.has-sunset .hero h1,
+body.has-sunset h2.section-title,
+body.has-sunset .sunset-name .n {
+  font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-style: normal; text-transform: uppercase;
+}
+body.has-sunset .hero h1 { font-size: clamp(46px, 5.6vw, 76px); line-height: 0.95; letter-spacing: 0.2px; }
+body.has-sunset h2.section-title { font-size: clamp(38px, 4vw, 52px); line-height: 0.95; letter-spacing: 0.3px; margin-bottom: 28px; }
+.sunset-name .n { font-size: clamp(52px, 9vw, 128px) !important; line-height: 0.9 !important; letter-spacing: 0.5px !important; }
+section[id], footer[id] { scroll-margin-top: 110px; }
+
+/* ASCII portrait beside the intro copy */
+.hero-portrait { display: block; width: 340px; height: auto; aspect-ratio: 45.6 / 53; flex-shrink: 0; }
+@media (max-width: 860px) { .hero-portrait { width: min(300px, 86%); margin: 8px auto 0; } }
