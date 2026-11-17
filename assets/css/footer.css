@@ -1,0 +1,29 @@
+/* Shared site footer (pulled in on every page via _includes/site-footer.html) */
+@font-face { font-family: 'Big Shoulders Display'; src: url('/RESUME/assets/fonts/BigShouldersDisplay-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+
+.site-footer { position: relative; z-index: 1; margin-top: 0; padding: 48px 40px 0; background: #f2ebe0; border-top: 1px solid #ddd0bd; color: #211d18; font-family: 'Inter', system-ui, sans-serif; line-height: 1.5; }
+.site-footer a { text-decoration: none; }
+.sf-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+.sf-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.sf-logo { display: inline-flex; align-items: center; gap: 14px; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; font-size: 26px; line-height: 1; color: #211d18; }
+.sf-logo img { width: 50px; height: auto; display: block; }
+.sf-logo .sf-divider { width: 1px; height: 28px; background: #ddd0bd; }
+.sf-tag { margin: 4px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #b5583a; }
+.sf-email { font-size: 16px; color: #211d18; border-bottom: 1px solid #b5583a; padding-bottom: 2px; }
+.sf-cta { margin-top: 8px; display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; font-size: 14px; font-weight: 500; border-radius: 8px; padding: 11px 20px; background: #b5583a; color: #fff8f2 !important; }
+.sf-cta:hover { background: #9c4b30; }
+.sf-col { display: flex; flex-direction: column; gap: 10px; }
+.sf-col h3 { margin: 0 0 4px; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; font-size: 18px; line-height: 1.1; color: #211d18; }
+.sf-col a { font-size: 15px; color: #55493d; width: fit-content; }
+.sf-email:hover, .sf-col a:hover, .sf-base a:hover { color: #b5583a; }
+.sf-base { max-width: 1100px; margin: 36px auto 0; padding-top: 16px; border-top: 1px solid #ddd0bd; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; color: #75685a; }
+.sf-base a { color: #75685a; }
+.site-footer .critters { display: block; width: 100%; max-width: 1100px; height: 110px; margin: 18px auto 0; image-rendering: pixelated; }
+@media (max-width: 860px) {
+  .site-footer { padding: 40px 20px 0; }
+  .sf-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .sf-brand { grid-column: 1 / -1; }
+}
