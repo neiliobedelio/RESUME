@@ -4,7 +4,7 @@
 @font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: 'Inter'; src: url('/RESUME/assets/fonts/Inter-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
 
-.site-footer { position: relative; z-index: 1; margin-top: 0; padding: 48px 40px 0; background: #f2ebe0; border-top: 1px solid #ddd0bd; color: #211d18; font-family: 'Inter', system-ui, sans-serif; line-height: 1.5; }
+.site-footer { position: relative; z-index: 1; overflow: hidden; margin-top: 0; padding: 48px 40px 0; background: #f2ebe0; border-top: 1px solid #ddd0bd; color: #211d18; font-family: 'Inter', system-ui, sans-serif; line-height: 1.5; }
 .site-footer a { text-decoration: none; }
 .sf-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
 .sf-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -21,7 +21,7 @@
 .sf-email:hover, .sf-col a:hover, .sf-base a:hover { color: #b5583a; }
 .sf-base { max-width: 1100px; margin: 36px auto 0; padding-top: 16px; border-top: 1px solid #ddd0bd; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; color: #75685a; }
 .sf-base a { color: #75685a; }
-.site-footer .critters { display: block; width: 100%; max-width: 1100px; height: 110px; margin: 18px auto 0; image-rendering: pixelated; }
+.site-footer .critters { display: block; width: 100%; max-width: 1100px; height: 170px; margin: 10px auto 0; image-rendering: pixelated; }
 @media (max-width: 860px) {
   .site-footer { padding: 40px 20px 0; }
   .sf-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
