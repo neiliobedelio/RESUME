@@ -8,7 +8,9 @@ function startFactRunner(host) {
     ['Favorite athlete', 'Steph Curry'],
     ['Favorite hobby', 'Saturday morning basketball'],
     ['Years designing', '35'],
-    ['Favorite favorite', 'Cats']
+    ['Favorite favorite', 'Cats'],
+    ['Favorite kung fu master', 'Bruce Lee'],
+    ['Philosophy', '\u201cEmbrace the struggle\u201d']
   ];
   var EVERY = 15000, CROSS = 4000;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -50,17 +52,25 @@ function startFactRunner(host) {
 
   var wrap = document.createElement('div');
   wrap.setAttribute('aria-hidden', 'true');
-  wrap.style.cssText = 'position:fixed; left:0; bottom:8px; z-index:60; pointer-events:none; display:none; will-change:transform;';
+  wrap.style.cssText = 'position:absolute; left:0; bottom:4px; z-index:3; pointer-events:none; display:none; will-change:transform;';
+  // Wooden plank sign: rough, uneven ends (pointing the way he runs) with a dark outline and wood grain.
+  var SHAPE = 'polygon(3% 10%, 9% 4%, 30% 6%, 62% 0%, 86% 3%, 100% 52%, 88% 100%, 55% 95%, 22% 99%, 4% 93%, 7% 78%, 0% 63%, 6% 50%, 1% 34%, 5% 22%)';
   var sign = document.createElement('div');
-  sign.style.cssText = "position:absolute; bottom:" + (bh + 18) + "px; left:" + (bw - 2 * px) + "px; transform:translateX(-50%); " +
-    "background:#fff6ea; border:3px solid #2c211b; box-shadow:4px 4px 0 #2c211b; padding:7px 12px 8px; white-space:nowrap; text-align:center; image-rendering:pixelated;";
+  sign.style.cssText = 'position:absolute; bottom:' + (bh + 14) + 'px; left:' + (bw - 2 * px) + 'px; transform:translateX(-50%); ' +
+    'filter: drop-shadow(2px 0 0 #6b3a22) drop-shadow(-2px 0 0 #6b3a22) drop-shadow(0 2px 0 #6b3a22) drop-shadow(0 -2px 0 #6b3a22) drop-shadow(3px 4px 0 rgba(60,30,18,0.35));';
+  var plank = document.createElement('div');
+  plank.style.cssText = 'clip-path:' + SHAPE + '; background: repeating-linear-gradient(176deg, rgba(122,58,37,0) 0 9px, rgba(122,58,37,0.16) 9px 10px, rgba(122,58,37,0) 10px 17px), linear-gradient(180deg, #e9a46a, #d98a4e); ' +
+    'padding:9px 30px 10px 22px; white-space:nowrap; text-align:center; position:relative;';
   var label = document.createElement('div');
-  label.style.cssText = "font:600 10px/1.2 'Inter',system-ui,sans-serif; letter-spacing:0.12em; text-transform:uppercase; color:#b5583a;";
+  label.style.cssText = "font:600 10px/1.2 'Inter',system-ui,sans-serif; letter-spacing:0.12em; text-transform:uppercase; color:#6b3a22;";
   var value = document.createElement('div');
-  value.style.cssText = "font:800 22px/1 'Big Shoulders Display','Arial Narrow',sans-serif; text-transform:uppercase; letter-spacing:0.5px; color:#211d18; margin-top:3px;";
-  sign.appendChild(label); sign.appendChild(value);
+  value.style.cssText = "font:800 22px/1 'Big Shoulders Display','Arial Narrow',sans-serif; text-transform:uppercase; letter-spacing:0.5px; color:#3a1f12; margin-top:3px;";
+  var nailL = document.createElement('i'), nailR = document.createElement('i');
+  [nailL, nailR].forEach(function (n, i) { n.style.cssText = 'position:absolute; top:50%; ' + (i ? 'right:20px;' : 'left:12px;') + ' width:4px; height:4px; margin-top:-2px; border-radius:50%; background:#8a4a28; box-shadow:0 0 0 1px rgba(255,220,180,0.35);'; });
+  plank.appendChild(nailL); plank.appendChild(nailR); plank.appendChild(label); plank.appendChild(value);
+  sign.appendChild(plank);
   var stick = document.createElement('div');
-  stick.style.cssText = 'position:absolute; left:' + (bw - 3 * px) + 'px; bottom:' + (bh - 7 * px) + 'px; width:' + px + 'px; height:' + (7 * px + 21) + 'px; background:#2c211b;';
+  stick.style.cssText = 'position:absolute; left:' + (bw - 3.5 * px) + 'px; bottom:' + (bh - 7 * px) + 'px; width:' + (2 * px) + 'px; height:' + (7 * px + 20) + 'px; background:#b8703f; box-shadow: 0 0 0 2px #6b3a22;';
   var canvas = document.createElement('canvas');
   canvas.width = bw; canvas.height = bh;
   canvas.style.cssText = 'display:block; width:' + bw + 'px; height:' + bh + 'px; image-rendering:pixelated;';
@@ -91,7 +101,7 @@ function startFactRunner(host) {
     label.textContent = fact[0]; value.textContent = fact[1];
     wrap.style.display = 'block';
     var signHalf = sign.offsetWidth / 2;
-    var from = -bw - signHalf - 20, to = window.innerWidth + signHalf + 20;
+    var from = -bw - signHalf - 20, to = host.clientWidth + signHalf + 20;
     running = true; t0 = 0;
     function step(now) {
       if (!t0) t0 = now;
@@ -105,12 +115,23 @@ function startFactRunner(host) {
     }
     raf = requestAnimationFrame(step);
   }
-  timer = setInterval(run, EVERY);
+  var visible = false, lastRun = -Infinity, kick = null, io = null;
+  var _run = run;
+  run = function () { if (!visible) return; lastRun = Date.now(); _run(); };
+  if ('IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (e) {
+      visible = e[0].isIntersecting;
+      if (visible && Date.now() - lastRun > EVERY) { clearTimeout(kick); kick = setTimeout(run, 1200); }
+    }, { threshold: 0.35 });
+    io.observe(host);
+  } else visible = true;
+  timer = setInterval(function () { if (Date.now() - lastRun >= EVERY - 50) run(); }, 1000);
   return function () {
-    clearInterval(timer); if (raf) cancelAnimationFrame(raf);
+    clearInterval(timer); clearTimeout(kick); if (io) io.disconnect(); if (raf) cancelAnimationFrame(raf);
     if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
   };
 }
 // @@fact-runner-end
-  startFactRunner(document.body);
+  var foot = document.querySelector('.site-footer');
+  if (foot) startFactRunner(foot);
 })();
