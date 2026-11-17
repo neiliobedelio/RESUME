@@ -34,6 +34,7 @@
   document.body.insertBefore(scene, document.body.firstChild);
   document.body.classList.add('has-sunset');
   var ctx = canvas.getContext('2d');
+  var footer = document.querySelector('.site-footer');
   var W = 0, H = 0, cw = 0, ch = 0, cols = 0, rows = 0, font = '';
 
   function resize() {
@@ -91,11 +92,19 @@
     var mobile = W < 860;
     var sunX = W / 2, sunY = (mobile ? 42 : 46) * vh + p * 42 * vh, sunR = (mobile ? 20 : 24) * vh;
     // wave tops per layer per column (quantized to rows)
-    var tops = WAVES.map(function (w) {
+    // The front (paper) wave rises to meet the footer, so the footer sits on the scene's ground layer.
+    var groundBase = 22, groundSwing = 1;
+    if (footer) {
+      var ft = footer.getBoundingClientRect().top;
+      var need = (H - ft) / vh + 2;
+      if (need > 22) { groundBase = need; groundSwing = Math.max(0.25, 1 - (need - 22) / 18); }
+    }
+    var tops = WAVES.map(function (w, li) {
       var t = new Array(cols);
+      var base = li === WAVES.length - 1 ? groundBase : w.base, swing = li === WAVES.length - 1 ? w.swing * groundSwing : w.swing;
       for (var c = 0; c < cols; c++) {
         var bi = Math.min(BARS - 1, Math.floor((c * cw + cw / 2) / W * BARS));
-        var hgt = w.base * vh + Math.sin(a * w.speed + (bi + 1) * w.step * Math.PI / 180 + w.off[bi]) * w.swing * vh * w.amp[bi];
+        var hgt = base * vh + Math.sin(a * w.speed + (bi + 1) * w.step * Math.PI / 180 + w.off[bi]) * swing * vh * w.amp[bi];
         t[c] = Math.floor((H - hgt) / ch);
       }
       return t;
