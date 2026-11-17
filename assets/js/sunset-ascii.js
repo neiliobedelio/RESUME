@@ -34,7 +34,7 @@
   document.body.insertBefore(scene, document.body.firstChild);
   document.body.classList.add('has-sunset');
   var ctx = canvas.getContext('2d');
-  var footer = document.querySelector('.site-footer');
+  var footer = null;
   var W = 0, H = 0, cw = 0, ch = 0, cols = 0, rows = 0, font = '';
 
   function resize() {
@@ -88,14 +88,16 @@
     return [best, bt];
   }
   function draw(p) {
+    if (!footer) footer = document.querySelector('.site-footer');
     var vh = H / 100, a = p * 1440 * Math.PI / 180;
     var mobile = W < 860;
     var sunX = W / 2, sunY = (mobile ? 42 : 46) * vh + p * 42 * vh, sunR = (mobile ? 20 : 24) * vh;
     // wave tops per layer per column (quantized to rows)
     // The front (paper) wave rises to meet the footer, so the footer sits on the scene's ground layer.
-    var groundBase = 22, groundSwing = 1;
+    var groundBase = 22, groundSwing = 1, solidFrom = Infinity;
     if (footer) {
       var ft = footer.getBoundingClientRect().top;
+      solidFrom = ft - ch;
       var need = (H - ft) / vh + 2;
       if (need > 22) { groundBase = need; groundSwing = Math.max(0.25, 1 - (need - 22) / 18); }
     }
@@ -122,6 +124,8 @@
           bg = w.bg; fg = w.fg;
           glyph = depth === 0 ? w.ramp.charAt(2) : w.ramp.charAt((c + r) % 2 === 0 ? 1 : 0);
           if (depth % 4 === 3) glyph = ' ';
+          // solid ground (no characters) behind the footer's text
+          if (layer === WAVES.length - 1 && y >= solidFrom) glyph = ' ';
         } else {
           var dx = (x + cw / 2 - sunX) / sunR, dy = (y + ch / 2 - sunY) / sunR;
           var d = Math.sqrt(dx * dx + dy * dy);
