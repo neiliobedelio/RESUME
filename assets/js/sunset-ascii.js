@@ -69,7 +69,7 @@
       cl.puffs.push([px, -0.1 - big * 0.35 + rnd() * 0.15, 0.16 + big * 0.14 + rnd() * 0.05, 0.55 + big * 0.5]);
     }
   });
-  var CLOUD_TOP = hex('#fff3e4'), CLOUD_BOT = hex('#e7ad86'), CLOUD_INK = hex('#b5583a');
+  var CLOUD_BG = '#fbf3e8', CLOUD_FG = '#ecd5bb';
   function cloudsAt(p, vw, vh) {
     return CLOUDS.map(function (cl) {
       var cx = ((cl.x + p * cl.speed * 130) % 180 + 180) % 180 - 40;
@@ -137,15 +137,11 @@
             fg = rgb(mix(base, hex('#a8532f'), 0.32 + glow * 0.4));
           }
           var cd = cloudDensity(cloudList, x + cw / 2, y + ch / 2);
-          if (cd[0] > 0.1) {
-            var under = hex(bg.charAt(0) === '#' ? bg : '#000000');
-            var a2 = Math.min(1, (cd[0] - 0.1) / 0.3);
-            var ccol = mix(CLOUD_TOP, CLOUD_BOT, cd[1]);
-            var baseRgb = bg.charAt(0) === 'r' ? bg.slice(4, -1).split(',').map(Number) : under;
-            var cb = mix(baseRgb, ccol, a2);
-            bg = rgb(cb);
-            fg = rgb(mix(cb, CLOUD_INK, 0.22 + cd[1] * 0.25));
-            glyph = cd[0] > 0.55 ? (cd[1] > 0.62 ? '=' : '~') : (cd[0] > 0.28 ? '-' : (a2 > 0.2 ? '.' : glyph));
+          if (cd[0] > 0.22) {
+            // flat, very light cloud — same treatment as the wave bands (solid fill + one glyph tone)
+            var edge = cloudDensity(cloudList, x + cw / 2, y - ch / 2)[0] <= 0.22;
+            bg = CLOUD_BG; fg = CLOUD_FG;
+            glyph = edge ? '~' : ((c + r) % 2 === 0 ? '-' : ' ');
           }
         }
         ctx.fillStyle = bg; ctx.fillRect(x, y, cw, ch);
