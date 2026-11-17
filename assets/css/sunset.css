@@ -79,3 +79,33 @@ section[id], footer[id] { scroll-margin-top: 110px; }
 /* ASCII portrait beside the intro copy */
 .hero-portrait { display: block; width: 340px; height: auto; aspect-ratio: 45.6 / 53; flex-shrink: 0; }
 @media (max-width: 860px) { .hero-portrait { width: min(300px, 86%); margin: 8px auto 0; } }
+
+
+/* Education rows (moved out of the footer) */
+.edu-list { margin-top: 20px; display: grid; gap: 0; border-top: 1px solid var(--border); }
+.edu-item { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.edu-school { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; font-size: 20px; color: var(--ink); }
+.edu-degree { font-size: 15px; color: var(--body); }
+
+/* Footer on the base layer: no panel, just the scene's ground behind it */
+.site-footer { background: transparent; color: var(--ink); padding: 0 40px 28px; position: relative; }
+body.has-sunset .site-footer { margin-top: 22vh; }
+.site-footer .critters { display: block; width: 100%; max-width: 1100px; height: 64px; margin: 0 auto; image-rendering: pixelated; }
+.sf-inner { max-width: 1100px; margin: 0 auto; padding-top: 28px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+.sf-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.sf-tag { margin: 4px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.sf-email { font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+.sf-email:hover { color: var(--accent); }
+.sf-cta { margin-top: 8px; }
+.sf-col { display: flex; flex-direction: column; gap: 10px; }
+.sf-col h3 { margin: 0 0 4px; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; font-size: 18px; color: var(--ink); }
+.sf-col a { font-size: 15px; color: var(--body); width: fit-content; }
+.sf-col a:hover { color: var(--accent); }
+.sf-base { max-width: 1100px; margin: 36px auto 0; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.sf-base a { color: var(--muted); }
+.sf-base a:hover { color: var(--accent); }
+@media (max-width: 860px) {
+  .site-footer { padding: 0 20px 24px; }
+  .sf-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .sf-brand { grid-column: 1 / -1; }
+}
