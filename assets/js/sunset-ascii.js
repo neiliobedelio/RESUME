@@ -52,13 +52,7 @@
 
 
   // Clouds: puffy ASCII cumulus that drift left to right with scroll (each at its own speed).
-  var CLOUDS = [
-    { x: -6, y: 13, w: 30, h: 8, speed: 1.0, seed: 3 },
-    { x: 46, y: 8, w: 22, h: 6, speed: 0.55, seed: 11 },
-    { x: 78, y: 21, w: 26, h: 7, speed: 1.35, seed: 23 },
-    { x: 22, y: 31, w: 18, h: 5, speed: 0.8, seed: 41 },
-    { x: 104, y: 16, w: 20, h: 6, speed: 0.7, seed: 57 }
-  ];
+  var CLOUDS = []; // clouds removed — kept as an empty list so the cloud code is a no-op
   CLOUDS.forEach(function (cl) {
     var rnd = function () { cl.seed = (cl.seed * 9301 + 49297) % 233280; return cl.seed / 233280; };
     var n = 5 + Math.floor(rnd() * 2);
