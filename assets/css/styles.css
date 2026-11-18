@@ -504,33 +504,19 @@ footer .copyright { font-size: 13px; color: #7a6d5b; margin-left: 4px; }
 }
 
 /* ---------------- Projects hero reel ---------------- */
-.projects-reel { position: relative; background: var(--dark); line-height: 0; }
+/* No controls; the reel fades into the page background at its edges. */
+.projects-reel { position: relative; line-height: 0; background: var(--bg); }
 .projects-reel-video {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: calc(100svh - 120px);
   object-fit: cover;
-  background: var(--dark);
+  background: var(--bg);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 94%, transparent 100%);
 }
-.projects-reel-toggle {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--accent-text);
-  background: rgba(33, 29, 24, 0.62);
-  border: 1px solid rgba(255, 248, 242, 0.35);
-  border-radius: 999px;
-  padding: 9px 16px;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-}
-.projects-reel-toggle:hover { background: rgba(33, 29, 24, 0.85); }
-.projects-reel-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-@media (max-width: 860px) {
-  .projects-reel-toggle { top: 12px; right: 12px; padding: 7px 12px; font-size: 12px; }
-}
+.projects-reel-video::-webkit-media-controls,
+.projects-reel-video::-webkit-media-controls-start-playback-button,
+.projects-reel-video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
