@@ -32,7 +32,15 @@
   </nav>
 
 
-  <header class="hero" style="padding-bottom: 24px;">
+  <section class="projects-reel" aria-label="Project reel: Bisbee, Moving Pima, Alabama Beaches, Orange County NY and Visit Port Aransas">
+    <video class="projects-reel-video" muted loop playsinline preload="metadata" poster="/RESUME/assets/video/projects-reel-poster.jpg">
+      <source src="/RESUME/assets/video/projects-reel-960.mp4" type="video/mp4" media="(max-width: 860px)">
+      <source src="/RESUME/assets/video/projects-reel-1600.mp4" type="video/mp4">
+    </video>
+    <button class="projects-reel-toggle" type="button" aria-pressed="false" hidden>Pause reel</button>
+  </section>
+
+  <header class="hero" style="padding-top: 56px; padding-bottom: 24px;">
     <span class="eyebrow">SELECTED WORK</span>
     <h1 style="font-size:44px;">Projects &amp; case studies.</h1>
     <p class="lead">Fifteen years of brand, web, and campaign work for public-sector tourism boards and destination marketing organizations. Each card links to the full case study.</p>
@@ -260,6 +268,7 @@
 
 
   <script src="/RESUME/assets/js/nav.js" defer=""></script>
+  <script src="/RESUME/assets/js/projects-reel.js" defer=""></script>
   
 </body>
 </html>
