@@ -504,7 +504,7 @@ footer .copyright { font-size: 13px; color: #7a6d5b; margin-left: 4px; }
 }
 
 /* ---------------- Projects hero reel ---------------- */
-/* No controls; the reel fades into the page background at its edges. */
+/* No controls; hard top edge, 8-bit block edge along the bottom (a finer 96-column version of the reel's dissolve grid). */
 .projects-reel { position: relative; line-height: 0; background: var(--bg); }
 .projects-reel-video {
   display: block;
@@ -514,8 +514,16 @@ footer .copyright { font-size: 13px; color: #7a6d5b; margin-left: 4px; }
   object-fit: cover;
   background: var(--bg);
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 94%, transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 4%, #000 94%, transparent 100%);
+}
+.projects-reel-edge {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 96 / 4;
+  shape-rendering: crispEdges;
+  pointer-events: none;
 }
 .projects-reel-video::-webkit-media-controls,
 .projects-reel-video::-webkit-media-controls-start-playback-button,
