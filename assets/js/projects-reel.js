@@ -1,29 +1,11 @@
-// Projects page hero reel: autoplays muted unless the visitor prefers reduced motion,
-// with a pause/play control (WCAG 2.2.2 for motion longer than five seconds).
+// Projects page hero reel: plays muted and looping with no controls.
+// Visitors who prefer reduced motion see the still poster frame instead.
 (function () {
   var video = document.querySelector('.projects-reel-video');
-  var toggle = document.querySelector('.projects-reel-toggle');
-  if (!video || !toggle) return;
-
+  if (!video) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function sync() {
-    var paused = video.paused;
-    toggle.textContent = paused ? 'Play reel' : 'Pause reel';
-    toggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
-  }
-
-  toggle.hidden = false;
-  toggle.addEventListener('click', function () {
-    if (video.paused) { video.play(); } else { video.pause(); }
-  });
-  video.addEventListener('play', sync);
-  video.addEventListener('pause', sync);
-
-  if (!reduce) {
-    video.preload = 'auto';
-    var p = video.play();
-    if (p && p.catch) p.catch(sync);
-  }
-  sync();
+  if (reduce) return;
+  video.preload = 'auto';
+  var p = video.play();
+  if (p && p.catch) p.catch(function () {});
 })();
