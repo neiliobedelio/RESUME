@@ -26,6 +26,13 @@ function startCritters(canvas) {
     ['...........R.R', '...........R.R', '...........RRR', '..........RRRR', '..........RRWR', '...RRRRRRRRRRD',
      '.RRRRRRRRRRR..', 'TRRRRRRRRRR...', 'RRR......RRR..', 'DD........RR..', '...........D..', '..............']
   ];
+  // sitting up (ears up / one ear flopped), shown while the rabbit takes a break
+  var RABBIT_SIT = [
+    ['.......R.R....', '.......R.R....', '.......R.R....', '.......RRR....', '......RRRRR...', '......RRWRRD..', '.....RRRRRR...',
+     '....RRRRRR....', '...RRRRRRR....', '..TRRRRRRR....', '...RRRRRRR....', '...DDD.DDD....'],
+    ['........R.....', '.......R.R....', '.......R.R....', '.......RRR....', '......RRRRR...', '......RRWRRD..', '.....RRRRRR...',
+     '....RRRRRR....', '...RRRRRRR....', '..TRRRRRRR....', '...RRRRRRR....', '...DDD.DDD....']
+  ];
   var ROCKS = [
     ['...GGGG...', '..GHHGGG..', '.GHGGGGSG.', 'GGGGGGGSSG', 'SSSSSSSSSS'],
     ['..GGG..', '.GHGGS.', 'GGGGGSS', 'SSSSSSS'],
@@ -93,7 +100,7 @@ function startCritters(canvas) {
 
   // ---- the two leads ----
   var rr = { x: 0, dir: 1, t: 0, pause: 0, bang: 0 };
-  var jr = { x: 0, dir: -1, hopT: 0, rest: 0, lift: 0, fast: false };
+  var jr = { x: 0, dir: -1, hopT: 0, rest: 0, lift: 0, fast: false, sit: 0, sitT: 0 };
   var chase = null, cooldown = 4000;
   function placeLeads() {
     rr.x = W * 0.12; rr.dir = 1; rr.pause = 0;
@@ -101,10 +108,11 @@ function startCritters(canvas) {
   }
 
   function hop(dt, speed, period) {
+    if (jr.sit > 0) { jr.sit -= dt; jr.sitT += dt; jr.lift = 0; return; }
     if (jr.rest > 0) { jr.rest -= dt; jr.lift = 0; return; }
     jr.hopT += dt;
     var k = jr.hopT / period;
-    if (k >= 1) { jr.hopT = 0; k = 0; if (!jr.fast) { jr.rest = 250 + Math.random() * 1400; if (Math.random() < 0.15) jr.dir *= -1; } }
+    if (k >= 1) { jr.hopT = 0; k = 0; if (!jr.fast) { jr.rest = 250 + Math.random() * 1400; if (Math.random() < 0.15) jr.dir *= -1; if (Math.random() < 0.22) { jr.sit = 2500 + Math.random() * 3500; jr.sitT = 0; } } }
     jr.lift = Math.sin(Math.PI * k) * (jr.fast ? 9 : 7) * px;
     jr.x += jr.dir * dt * speed;
   }
@@ -135,7 +143,7 @@ function startCritters(canvas) {
       }
     } else if (chase.wait > 0) {
       chase.wait -= dt;               // the "!" beat before the chase
-      if (chase.wait <= 0) { jr.dir = rr.dir; jr.fast = true; jr.rest = 0; }
+      if (chase.wait <= 0) { jr.dir = rr.dir; jr.fast = true; jr.rest = 0; jr.sit = 0; }
     } else {
       // whoever leads runs flat out; the other follows; at the wall they swap roles and come back
       var d = rr.dir; rr.t += dt;
@@ -188,8 +196,13 @@ function startCritters(canvas) {
     var legs = moving ? Math.floor(rr.t / (chase ? 60 : 110)) % 2 : 0;
     onGround(RUNNER[legs], rr.x, rr.dir < 0);
     if (rr.bang > 0) sprite(BANG, rr.x + (rr.dir > 0 ? 9 : 4) * px, ground - hOf(RUNNER[0]) - 7 * px, false);
-    var airborne = jr.lift > px;
-    onGround(RABBIT[airborne ? 1 : 0], jr.x, jr.dir < 0, jr.lift);
+    if (jr.sit > 0) {
+      var flop = Math.floor(jr.sitT / 900) % 3 === 2; // ear twitch now and then
+      onGround(RABBIT_SIT[flop ? 1 : 0], jr.x, jr.dir < 0);
+    } else {
+      var airborne = jr.lift > px;
+      onGround(RABBIT[airborne ? 1 : 0], jr.x, jr.dir < 0, jr.lift);
+    }
   }
 
   var last = 0, running = false, visible = false;

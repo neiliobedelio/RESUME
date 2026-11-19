@@ -12,7 +12,7 @@ function startFactRunner(host) {
     ['Favorite kung fu master', 'Bruce Lee'],
     ['Philosophy', '\u201cEmbrace the struggle\u201d']
   ];
-  var EVERY = 15000, CROSS = 4000;
+  var EVERY = 15000, CROSS = 7000;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return function () {};
 
@@ -52,7 +52,7 @@ function startFactRunner(host) {
 
   var wrap = document.createElement('div');
   wrap.setAttribute('aria-hidden', 'true');
-  wrap.style.cssText = 'position:absolute; left:0; bottom:4px; z-index:3; pointer-events:none; display:none; will-change:transform;';
+  wrap.style.cssText = 'position:absolute; left:0; bottom:4px; z-index:3; pointer-events:none; user-select:none; display:none; will-change:transform;';
   // 8-bit wooden plank sign: drawn pixel by pixel — jagged broken left end, arrow point on the right,
   // dark outline, a few grain dashes and nails, and a blocky 5x7 pixel font.
   // condensed 3px-wide pixel font (M, N, W a little wider), 7px tall
@@ -176,25 +176,32 @@ function startFactRunner(host) {
     return bag.pop();
   }
 
-  var raf = null, timer = null, t0 = 0, running = false;
+  // Click the sign (or the bird) to stop it in its tracks; click again and it carries on.
+  var raf = null, timer = null, running = false, paused = false, elapsed = 0, last = 0, from = 0, to = 0;
+  [sign, canvas, stick].forEach(function (el) { el.style.pointerEvents = 'auto'; el.style.cursor = 'pointer'; });
+  wrap.title = 'Click to stop / go';
+  wrap.addEventListener('click', function () { if (running) { paused = !paused; last = 0; } });
+  function place(f) {
+    drawBird(f);
+    var bob = (f === 1 ? -px : 0);
+    wrap.style.transform = 'translate3d(' + (from + (to - from) * Math.min(1, elapsed / CROSS)).toFixed(1) + 'px,' + bob + 'px,0)';
+  }
+  function step(now) {
+    if (!last) last = now;
+    if (!paused) elapsed += now - last;
+    last = now;
+    if (elapsed >= CROSS) { wrap.style.display = 'none'; running = false; paused = false; return; }
+    place(paused ? 0 : CYCLE[Math.floor(elapsed / 80) % CYCLE.length]);
+    raf = requestAnimationFrame(step);
+  }
   function run() {
     if (running || document.hidden) return;
     var fact = nextFact();
     drawSign(fact[0], fact[1]);
     wrap.style.display = 'block';
     var signHalf = sign.width / 2;
-    var from = -bw - signHalf - 20, to = host.clientWidth + signHalf + 20;
-    running = true; t0 = 0;
-    function step(now) {
-      if (!t0) t0 = now;
-      var k = (now - t0) / CROSS;
-      if (k >= 1) { wrap.style.display = 'none'; running = false; return; }
-      var f = CYCLE[Math.floor((now - t0) / 70) % CYCLE.length];
-      drawBird(f);
-      var bob = (f === 1 ? -px : 0);
-      wrap.style.transform = 'translate3d(' + (from + (to - from) * k).toFixed(1) + 'px,' + bob + 'px,0)';
-      raf = requestAnimationFrame(step);
-    }
+    from = -bw - signHalf - 20; to = host.clientWidth + signHalf + 20;
+    running = true; paused = false; elapsed = 0; last = 0;
     raf = requestAnimationFrame(step);
   }
   var visible = false, lastRun = -Infinity, kick = null, io = null;
@@ -207,7 +214,7 @@ function startFactRunner(host) {
     }, { threshold: 0.35 });
     io.observe(host);
   } else visible = true;
-  timer = setInterval(function () { if (Date.now() - lastRun >= EVERY - 50) run(); }, 1000);
+  timer = setInterval(function () { if (!running && Date.now() - lastRun >= EVERY - 50) run(); }, 1000);
   return function () {
     clearInterval(timer); clearTimeout(kick); if (io) io.disconnect(); if (raf) cancelAnimationFrame(raf);
     if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
