@@ -7,6 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Visit St. Lucie — Logo Design &amp; Brand Mark | Neil Bernardo</title>
 <link rel="stylesheet" href="/RESUME/assets/css/styles.css">
+<style>
+/* Motion study: the mark written into wet sand */
+.cs-motion { max-width: 1100px; margin: 0 auto 56px; padding: 0 40px; }
+.cs-motion figure { margin: 0; }
+.cs-motion video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; background: #c9b28a; }
+.cs-motion figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--muted, #75685a); }
+.cs-motion figcaption strong { color: var(--ink, #211d18); font-weight: 600; }
+@media (max-width: 860px) { .cs-motion { padding: 0 20px; margin-bottom: 40px; } .cs-motion video { border-radius: 10px; } }
+</style>
 </head>
 <body>
 
@@ -40,6 +49,22 @@
     <h1>Logo Design &amp; Brand Mark — Visit St. Lucie</h1>
     <p class="lead">Designed a destination logo mark capturing the laid-back, easygoing character of this coastal Florida community. Logo development balanced simplicity and versatility for application across digital marketing, print collateral, and wayfinding signage.</p>
   </header>
+
+  <section class="cs-motion" aria-label="Logo motion study">
+    <figure>
+      <video id="vsl-motion" muted loop playsinline autoplay preload="metadata" poster="/RESUME/assets/video/st-lucie-sand-script-poster.jpg" aria-label="Motion study: the Visit St. Lucie logo is written into wet sand stroke by stroke, then the tide washes it away.">
+        <source src="/RESUME/assets/video/st-lucie-sand-script-960.mp4" type="video/mp4" media="(max-width: 860px)">
+        <source src="/RESUME/assets/video/st-lucie-sand-script-1600.mp4" type="video/mp4">
+      </video>
+      <figcaption><span><strong>Motion study · Sand Script.</strong> The mark is written into wet sand, letter by letter, then the tide washes it away.</span><span>16-second loop</span></figcaption>
+    </figure>
+  </section>
+  <script>
+    (function () {
+      var v = document.getElementById('vsl-motion');
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+    })();
+  </script>
 
   <section class="section case-content">
     <div class="case-body-grid">
