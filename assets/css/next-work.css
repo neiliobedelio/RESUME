@@ -1,0 +1,27 @@
+/* "Next" block at the end of every case study: two big image cards + View all work */
+@font-face { font-family: 'Big Shoulders Display'; src: url('/RESUME/assets/fonts/BigShouldersDisplay-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+.next-work { padding: 72px 40px 96px; border-top: 1px solid #ddd0bd; background: #f7f3ec; }
+.next-work-inner { max-width: 1100px; margin: 0 auto; }
+.next-work-title { margin: 0 0 32px; font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; font-size: clamp(44px, 6vw, 72px); line-height: 0.9; color: #211d18; }
+.next-work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.next-card { display: flex; flex-direction: column; gap: 16px; color: #211d18; text-decoration: none; }
+.next-card-media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #e4dcc8; }
+.next-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.next-card:hover .next-card-media img, .next-card:focus-visible .next-card-media img { transform: scale(1.04); }
+.next-card-text { display: flex; flex-direction: column; gap: 6px; }
+.next-card-tag { font: 600 11.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #9c4b30; }
+.next-card-name { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; font-size: 26px; line-height: 1.05; }
+.next-card-arrow { display: inline-block; color: #b5583a; transition: transform 0.25s ease; }
+.next-card:hover .next-card-arrow, .next-card:focus-visible .next-card-arrow { transform: translateX(6px); }
+.next-card:focus-visible { outline: 2px solid #b5583a; outline-offset: 6px; }
+.next-work-all { display: flex; justify-content: center; margin-top: 56px; }
+.next-work-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 34px; background: #211d18; color: #f7f3ec !important; font: 600 14px/1 'Inter', system-ui, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s ease; }
+.next-work-btn:hover, .next-work-btn:focus-visible { background: #b5583a; }
+.next-work-btn:focus-visible { outline: 2px solid #211d18; outline-offset: 3px; }
+@media (max-width: 760px) {
+  .next-work { padding: 56px 20px 72px; }
+  .next-work-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .next-card-name { font-size: 22px; }
+  .next-work-all { margin-top: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .next-card-media img, .next-card-arrow { transition: none; } }
