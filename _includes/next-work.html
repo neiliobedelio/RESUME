@@ -1,0 +1,26 @@
+{%- comment -%} "Next" block: the two case studies after this one in _data/work.yml (wraps around). Usage: {% include next-work.html current="slug" %} {%- endcomment -%}
+{%- assign work = site.data.work -%}
+{%- assign n = work | size -%}
+{%- assign here = 0 -%}
+{%- for w in work -%}{%- if w.slug == include.current -%}{%- assign here = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- assign a = here | plus: 1 | modulo: n -%}
+{%- assign b = here | plus: 2 | modulo: n -%}
+<link rel="stylesheet" href="/RESUME/assets/css/next-work.css?v=20261124a">
+<section class="next-work" aria-labelledby="next-work-title">
+  <div class="next-work-inner">
+    <h2 class="next-work-title" id="next-work-title">Next</h2>
+    <div class="next-work-grid">
+      {%- for i in (0..1) -%}
+      {%- if i == 0 -%}{%- assign w = work[a] -%}{%- else -%}{%- assign w = work[b] -%}{%- endif %}
+      <a class="next-card" href="{{ w.href }}">
+        <span class="next-card-media"><img src="{{ w.img }}" alt="{{ w.alt }}" loading="lazy"></span>
+        <span class="next-card-text">
+          <span class="next-card-tag">{{ w.tag }}</span>
+          <span class="next-card-name">{{ w.title }} <span class="next-card-arrow" aria-hidden="true">→</span></span>
+        </span>
+      </a>
+      {%- endfor %}
+    </div>
+    <div class="next-work-all"><a class="next-work-btn" href="/RESUME/projects.html">View all work</a></div>
+  </div>
+</section>
