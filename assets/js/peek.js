@@ -2,6 +2,7 @@
    anime-game cutscene in the gap: an extreme close-up of Neil's eyes opening... and transforming into a monster.
    Let go and the page springs back and the scene resets. Nothing is drawn over the page itself. */
 (function () {
+  if (window.nbPeek) return;
   var doc = document.documentElement;
   var css = '' +
     'html{overscroll-behavior-y:contain}' +
@@ -199,13 +200,22 @@
   }
   function resist(d) { var M = maxPull(); return M * (1 - Math.exp(-d / (M * 1.1))); }
 
+  // at the very top? (checks the page and any scrolling box the gesture started in)
+  function atTop(t) {
+    if (scrollY > 0) return false;
+    for (var n = t; n && n.nodeType === 1 && n !== document.body; n = n.parentElement) {
+      if (n.scrollTop > 0) { var oy = getComputedStyle(n).overflowY; if (oy === 'auto' || oy === 'scroll') return false; }
+    }
+    return true;
+  }
+
   // touch: drag down from the very top and hold
   var y0 = null;
-  addEventListener('touchstart', function (e) { y0 = (scrollY <= 0 && e.touches.length === 1) ? e.touches[0].clientY : null; }, { passive: true });
+  addEventListener('touchstart', function (e) { y0 = (e.touches.length === 1 && atTop(e.target)) ? e.touches[0].clientY : null; }, { passive: true });
   addEventListener('touchmove', function (e) {
     if (y0 === null) return;
     var d = e.touches[0].clientY - y0;
-    if (d <= 0 || scrollY > 0) { if (active) setPull(0); return; }
+    if (d <= 0 || !atTop(e.target)) { if (active) setPull(0); return; }
     if (e.cancelable) e.preventDefault();          // our pull replaces the browser's rubber-band
     begin(); setPull(resist(d));
   }, { passive: false });
@@ -214,9 +224,9 @@
 
   // mouse wheel / trackpad: keep scrolling up at the top to pull it open; stop and it springs back
   var topSince = scrollY <= 0 ? Date.now() - 1000 : 0, acc = 0, idle = 0;
-  addEventListener('scroll', function () { if (scrollY <= 0) { if (!topSince) topSince = Date.now(); } else { topSince = 0; } }, { passive: true });
+  addEventListener('scroll', function (e) { var t = e.target && e.target.nodeType === 1 ? e.target : null; var y = t ? t.scrollTop : scrollY; if (y <= 0) { if (!topSince) topSince = Date.now(); } else { topSince = 0; } }, { passive: true, capture: true });
   addEventListener('wheel', function (e) {
-    if (scrollY > 0 || !topSince || Date.now() - topSince < 450) return;
+    if (!atTop(e.target) || !topSince || Date.now() - topSince < 450) return;
     var dy = e.deltaY * (e.deltaMode === 1 ? 33 : 1);
     if (dy >= 0 && !active) return;
     e.preventDefault();
