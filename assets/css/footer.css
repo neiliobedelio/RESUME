@@ -27,3 +27,36 @@
   .sf-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
   .sf-brand { grid-column: 1 / -1; }
 }
+
+/* ---------- Mobile: header "Get in touch" becomes a slim tab pinned to the right edge ---------- */
+@media (max-width: 860px) {
+  .nav .nav-right {
+    display: flex !important;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
+  }
+  .nav .nav-right .btn-primary {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);          /* reads bottom-to-top, like a book spine */
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    line-height: 1;
+    box-sizing: border-box;
+    width: 34px; min-width: 0; min-height: 0;   /* same slim tab on every page; still a comfortable tap */
+    padding: 18px 0;
+    border-radius: 0 8px 8px 0;         /* rounded on the side facing the page (flipped by the rotate) */
+    box-shadow: 2px 0 14px rgba(33, 29, 24, .18);
+  }
+  .nav .nav-right .btn-primary:active { background: #9c4b30; }
+  /* tuck the tab away once the footer's own "Get in touch" is on screen */
+  .nav .nav-right.is-tucked { transform: translate(100%, -50%); opacity: 0; pointer-events: none; }
+}
+@media (max-width: 860px) and (prefers-reduced-motion: reduce) {
+  .nav .nav-right { transition: none; }
+}
