@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/RESUME/assets/css/footer.css?v=20261117e">
+<link rel="stylesheet" href="/RESUME/assets/css/footer.css?v=20261126a">
 <footer class="site-footer" id="contact">
   <div class="sf-inner">
     <div class="sf-brand">
@@ -26,3 +26,9 @@
 </footer>
 <script src="/RESUME/assets/js/critters.js?v=20261119a" defer></script>
 <script src="/RESUME/assets/js/fact-runner.js?v=20261119a" defer></script>
+<script>
+/* Hide the mobile side tab while the footer's own "Get in touch" button is visible */
+(function(){var tab=document.querySelector('.nav .nav-right'),cta=document.querySelector('.site-footer .sf-cta');
+if(!tab||!cta||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(e){tab.classList.toggle('is-tucked',e[0].isIntersecting)}).observe(cta);})();
+</script>
