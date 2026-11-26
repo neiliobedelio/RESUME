@@ -7,6 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orange County, NY Tourism — Brand Strategy | Neil Bernardo</title>
 <link rel="stylesheet" href="/RESUME/assets/css/styles.css">
+<style>
+/* Motion study: logo-lock application film */
+.cs-motion { max-width: 1100px; margin: 0 auto 56px; padding: 0 40px; }
+.cs-motion figure { margin: 0; }
+.cs-motion video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; background: #f3eee3; }
+.cs-motion figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin-top: 12px; font-size: 14px; line-height: 1.5; color: var(--muted, #75685a); }
+.cs-motion figcaption strong { color: var(--ink, #211d18); font-weight: 600; }
+@media (max-width: 860px) { .cs-motion { padding: 0 20px; margin-bottom: 40px; } .cs-motion video { border-radius: 10px; } }
+</style>
 </head>
 <body>
 
@@ -40,6 +49,22 @@
     <h1>Brand Strategy &amp; Visual Identity — Orange County, NY Tourism</h1>
     <p class="lead">Synthesized qualitative and quantitative research — stakeholder interviews, community input, and visitor studies — into a brand strategy that differentiated this destination from neighboring markets, including New York City. Developed a visual identity system (color palette, typography, brand voice) and a messaging framework built around authentic local language — &quot;fresh picked,&quot; &quot;fresh state of mind&quot; — to sharpen competitive positioning for the region&#39;s apple-orchard heritage.</p>
   </header>
+
+  <section class="cs-motion" aria-label="Brand application film">
+    <figure>
+      <video id="ocny-motion" muted loop playsinline autoplay controls preload="metadata" poster="/RESUME/assets/video/ocny-logo-lock-poster.jpg" aria-label="Brand application film: the OCNY apple mark stays locked at the center of the frame while it cuts from a county truck door to a metal sign, an embroidered polo, a woven label, a hang tag and a pen.">
+        <source src="/RESUME/assets/video/ocny-logo-lock-960.mp4" type="video/mp4" media="(max-width: 860px)">
+        <source src="/RESUME/assets/video/ocny-logo-lock-1600.mp4" type="video/mp4">
+      </video>
+      <figcaption><span><strong>Application film · One Mark.</strong> The apple holds still while the county moves around it: fleet, signage, apparel and everyday supplies.</span><span>20 seconds · sound on</span></figcaption>
+    </figure>
+  </section>
+  <script>
+    (function () {
+      var v = document.getElementById('ocny-motion');
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+    })();
+  </script>
 
   <section class="section case-content">
     <div class="case-body-grid">
